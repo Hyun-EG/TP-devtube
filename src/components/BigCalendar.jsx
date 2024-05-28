@@ -46,7 +46,7 @@ const BigCalendar = () => {
       dispatch(addEvent(newEvent));
     }
   };
-
+  console.log(newEvent);
   const handleSelectEvent = (event) => {
     setSelectedEvent(event);
     setModalIsOpen(true);

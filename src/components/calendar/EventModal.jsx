@@ -1,27 +1,27 @@
-import moment from 'moment';
+// EventModal.js
 import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
+import moment from 'moment';
 import styled from 'styled-components';
 
-const StyledModal = styled(Modal)`
-  .ReactModal__Overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
 
-  .ReactModal__Content {
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    width: 400px;    
-    border: 1px solid #ccc;    
-    overflow: auto;
-    border-radius: 10px;
-    outline: none;
-    padding: 20px;
-  }
+const ModalContent = styled.div`
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
 `;
 
 const ModalHeader = styled.h2`
@@ -31,9 +31,6 @@ const ModalHeader = styled.h2`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  padding-left: 100px;
-  padding-right: 100px;
-  height: 80vh;  
 `;
 
 const FormField = styled.div`
@@ -71,20 +68,30 @@ const Button = styled.button`
   &.cancel {
     background-color: #ccc;
   }
+
+  &.delete {
+    background-color: #ff4d4d;
+    color: white;
+  }
 `;
 
-const EventModal = ({ isOpen, onRequestClose, onSubmit, event }) => {
+const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event }) => {
   const [title, setTitle] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
-  const [memo, setMemo] = useState('');
+  const [note, setNote] = useState('');
 
   useEffect(() => {
     if (event) {
-      setTitle(event.title);
-      setStart(moment(event.start).format('YYYY-MM-DDTHH:mm'));
-      setEnd(moment(event.end).format('YYYY-MM-DDTHH:mm'));
-      setMemo(event.memo || '');
+      setTitle(event.title || '');
+      setStart(moment(event.start).format('YYYY-MM-DDTHH:mm') || '');
+      setEnd(moment(event.end).format('YYYY-MM-DDTHH:mm') || '');
+      setNote(event.note || '');
+    } else {
+      setTitle('');
+      setStart('');
+      setEnd('');
+      setNote('');
     }
   }, [event]);
 
@@ -94,56 +101,63 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, event }) => {
       title,
       start,
       end,
-      memo,
+      note,
     });
     onRequestClose();
   };
 
+  const handleDelete = () => {
+    onDelete(event.id);
+    onRequestClose();
+  };
+
+  if (!isOpen) return null;
+
   return (
-    <StyledModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Edit Event">
-      <ModalHeader>Edit Event</ModalHeader>
-      <Form>
-        <FormField>
-          <Label>Title</Label>
-          <Input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </FormField>
-        <FormField>
-          <Label>Start</Label>
-          <Input
-            type="datetime-local"
-            value={start}
-            onChange={(e) => setStart(e.target.value)}
-            required
-          />
-        </FormField>
-        <FormField>
-          <Label>End</Label>
-          <Input
-            type="datetime-local"
-            value={end}
-            onChange={(e) => setEnd(e.target.value)}
-            required
-          />
-        </FormField>
-        <FormField>
-          <Label>Memo</Label>
-          <Input
-            type="text"
-            value={memo}
-            onChange={(e) => setMemo(e.target.value)}
-          />
-        </FormField>
-        <ButtonGroup>
-          <Button type="button" className="save" onClick={handleSubmit}>Save</Button>
-          <Button type="button" className="cancel" onClick={onRequestClose}>Cancel</Button>
-        </ButtonGroup>
-      </Form>
-    </StyledModal>
+    <ModalOverlay onClick={onRequestClose}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <ModalHeader>{event ? 'Edit Event' : 'New Event'}</ModalHeader>
+        <Form>
+          <FormField>
+            <Label>Title</Label>
+            <Input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </FormField>
+          <FormField>
+            <Label>Start</Label>
+            <Input
+              type="datetime-local"
+              value={start}
+              onChange={(e) => setStart(e.target.value)}
+            />
+          </FormField>
+          <FormField>
+            <Label>End</Label>
+            <Input
+              type="datetime-local"
+              value={end}
+              onChange={(e) => setEnd(e.target.value)}
+            />
+          </FormField>
+          <ButtonGroup>
+            <Button className="save" type="button" onClick={handleSubmit}>
+              Save
+            </Button>
+            <Button className="cancel" type="button" onClick={onRequestClose}>
+              Cancel
+            </Button>
+            {event && (
+              <Button className="delete" type="button" onClick={handleDelete}>
+                Delete
+              </Button>
+            )}
+          </ButtonGroup>
+        </Form>
+      </ModalContent>
+    </ModalOverlay>
   );
 };
 

@@ -1,21 +1,14 @@
+// BigCalendar.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
-import { fetchEvents, addEvent, updateEvent, deleteEvent } from './eventsSlice';
+import { fetchEvents, addEvent, updateEvent, deleteEvent } from './Redux/eventsSlice';
+import CalendarChild from './CalendarChild';
 import EventModal from './EventModal';
-
-const DragAndDropCalendar = withDragAndDrop(Calendar);
-
-moment.locale('ko-KR');
-const localizer = momentLocalizer(moment);
 
 const BigCalendar = () => {
   const dispatch = useDispatch();
-  const events = useSelector(state => state.events.items);
-  const status = useSelector(state => state.events.status);
+  const events = useSelector((state) => state.events.items);
+  const status = useSelector((state) => state.events.status);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -36,16 +29,13 @@ const BigCalendar = () => {
   };
 
   const newEvent = ({ start, end }) => {
-    const title = window.prompt('New Event name');
-    if (title) {
-      const newEvent = {
-        title,
-        start: start.toISOString(),
-        end: end.toISOString(),
-        memo: ''
-      };
-      dispatch(addEvent(newEvent));
-    }
+    setSelectedEvent({
+      title: '',
+      start: start.toISOString(),
+      end: end.toISOString(),
+      note: ''
+    });
+    setModalIsOpen(true);
   };
 
   const handleSelectEvent = (event) => {
@@ -59,26 +49,33 @@ const BigCalendar = () => {
   };
 
   const handleModalSubmit = (updatedEvent) => {
-    dispatch(updateEvent(updatedEvent));
+    if (updatedEvent.id) {
+      dispatch(updateEvent(updatedEvent));
+    } else {
+      dispatch(addEvent(updatedEvent));
+    }
+    setModalIsOpen(false);
+  };
+
+  const handleDelete = (id) => {
+    dispatch(deleteEvent(id));
+    setModalIsOpen(false);
   };
 
   return (
     <>
-      <DragAndDropCalendar
-        localizer={localizer}
+      <CalendarChild
         events={events}
         onEventDrop={moveEvent}
         onEventResize={resizeEvent}
-        selectable
-        resizable
         onSelectSlot={newEvent}
         onSelectEvent={handleSelectEvent}
-        style={{ height: 900 }}
       />
       <EventModal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}
         onSubmit={handleModalSubmit}
+        onDelete={handleDelete}
         event={selectedEvent}
       />
     </>

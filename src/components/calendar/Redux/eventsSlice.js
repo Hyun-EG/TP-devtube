@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../firebase/config';
+import { db } from '../../../firebase/config';
 
 export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
-  const eventsCollection = collection(db, 'events');
+  const eventsCollection = collection(db, 'my-schedules');
   const eventsSnapshot = await getDocs(eventsCollection);
   return eventsSnapshot.docs.map(doc => {
     const data = doc.data();
@@ -18,7 +18,7 @@ export const addEvent = createAsyncThunk('events/addEvent', async (event) => {
     end: event.end,
     memo: event.memo || ''
   };
-  const docRef = await addDoc(collection(db, 'events'), newEvent);
+  const docRef = await addDoc(collection(db, 'my-schedules'), newEvent);
   return { ...newEvent, id: docRef.id };
 });
 
@@ -29,12 +29,12 @@ export const updateEvent = createAsyncThunk('events/updateEvent', async (event) 
     end: event.end,
     memo: event.memo || ''
   };
-  await updateDoc(doc(db, 'events', event.id), updatedEvent);
+  await updateDoc(doc(db, 'my-schedules', event.id), updatedEvent);
   return updatedEvent;
 });
 
 export const deleteEvent = createAsyncThunk('events/deleteEvent', async (id) => {
-  await deleteDoc(doc(db, 'events', id));
+  await deleteDoc(doc(db, 'my-schedules', id));
   return id;
 });
 

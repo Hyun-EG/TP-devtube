@@ -60,6 +60,7 @@
 	@include flex(between);
 	.footer-sign-up {
 		color: #065fd4;
+		cursor: pointer;
 	}
 	.login-btn {
 		color: #fff;
@@ -68,5 +69,6 @@
 		width: 110px;
 		height: 42px;
 		border-radius: 4px;
+		cursor: pointer;
 	}
 }

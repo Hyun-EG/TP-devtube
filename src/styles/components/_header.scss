@@ -1,0 +1,25 @@
+header {
+	height: 60px;
+	display: flex;
+	border-bottom: 1px solid #e6e6e6;
+
+	.logo {
+		padding: 20px;
+	}
+
+	.header__box {
+		margin: auto 20px auto auto;
+		padding: 4px 15px;
+		border: 1px solid #d9d9d9;
+		box-sizing: border-box;
+		border-radius: 4px;
+		width: 110px;
+		height: 35px;
+		display: flex;
+		cursor: pointer;
+
+		&_title {
+			margin: auto 0 auto 5px;
+		}
+	}
+}

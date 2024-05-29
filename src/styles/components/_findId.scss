@@ -55,13 +55,13 @@
 	}
 }
 
-.footer {
+.footer-id {
 	margin: 70px 20px;
 	@include flex(between);
-	.login {
+	.login-btn {
 		color: #065fd4;
 	}
-	.find-id-btn {
+	.pass-btn {
 		color: #fff;
 		background: #065fd4;
 		border: none;

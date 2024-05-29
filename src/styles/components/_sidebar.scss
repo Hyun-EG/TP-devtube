@@ -1,0 +1,68 @@
+.sidebar {
+	width: 250px;
+	height: 93.5vh;
+	border-right: 1px solid #e6e6e6;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+
+	.profile {
+		margin-top: 45px;
+		height: 152px;
+		@include column-flex(start, start);
+
+		&__img {
+			margin: 0 auto;
+		}
+
+		&__channel {
+			font-size: 16px;
+			margin: 13px auto 0;
+		}
+
+		&__name {
+			font-size: 14px;
+			margin: 0 auto;
+		}
+	}
+
+	.menu {
+		@include column-flex(between, start);
+		margin-top: 35px;
+		height: 224px;
+
+		&__list {
+			@include flex(start, center);
+			height: 50px;
+			cursor: pointer;
+
+			img {
+				margin-left: 20px;
+			}
+
+			span {
+				margin-left: 16px;
+			}
+		}
+	}
+
+	.logout {
+		margin: auto 0 50px 0;
+		padding-top: 50px;
+		border-top: 1px solid #e6e6e6;
+		cursor: pointer;
+
+		&_content {
+			display: flex;
+			align-items: center;
+
+			img {
+				margin-left: 30px;
+			}
+
+			span {
+				margin-left: 20px;
+			}
+		}
+	}
+}

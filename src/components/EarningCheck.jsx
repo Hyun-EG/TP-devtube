@@ -1,6 +1,7 @@
 import EarningDetails from './EarningDetails';
 import ArrowLeft from '../assets/arrow_left.png';
 import ArrowRight from '../assets/arrow_right.png';
+import EarningType from './EarningType';
 
 function EarningCheck() {
 	return (
@@ -26,6 +27,14 @@ function EarningCheck() {
 				<div className="earningCheck__inner">
 					<div className="earningCheck__inner_title">5월 수익</div>
 					<div className="earningCheck__inner_sub">종류별 내역</div>
+					<div className="earningCheck__inner_contentsBox">
+						<div className="earningCheck__inner_contentsBox_contents">
+							<EarningType />
+							<EarningType />
+							<EarningType />
+							<EarningType />
+						</div>
+					</div>
 				</div>
 			</div>
 		</>

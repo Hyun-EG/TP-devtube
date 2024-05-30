@@ -1,0 +1,39 @@
+.earningCheck {
+	height: 28.3333vw;
+	@include flex(between, start);
+
+	&__inner {
+		padding: 1.3889vw;
+		width: 37.4306vw;
+		height: 100%;
+		border: 1px solid #d9d9d9;
+		border-radius: 8px;
+		@include column-flex(start, start);
+
+		&_title {
+			font-size: 1.3889vw;
+		}
+
+		&_sub {
+			width: 100%;
+			font-size: 1.6667vw;
+			padding: 1.1111vw 0;
+			border-bottom: 1px solid #d9d9d9;
+		}
+
+		&_contentsBox {
+			width: 100%;
+			padding: 1.1111vw 0;
+
+			&_contents {
+				margin-bottom: 1.1111vw;
+			}
+
+			&_arrow {
+				width: 5.5556vw;
+				margin: 0 auto;
+				@include flex(between, center);
+			}
+		}
+	}
+}

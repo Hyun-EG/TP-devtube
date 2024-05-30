@@ -44,6 +44,12 @@ export function Login() {
 		navigate('/findpassword');
 	};
 
+	const handleKeyPress = event => {
+		if (event.key === 'Enter') {
+			handleLogin();
+		}
+	};
+
 	return (
 		<>
 			<div className="login">
@@ -52,7 +58,7 @@ export function Login() {
 						<img src={logo} alt="header-logo" />
 					</div>
 					<div className="login-content">
-						<span className="sign-in">Sing in</span>
+						<span className="sign-in">Sign in</span>
 						<span>로그인</span>
 					</div>
 					<div className="input-area">
@@ -62,6 +68,7 @@ export function Login() {
 							placeholder="ID 입력해주세요"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
+							onKeyPress={handleKeyPress}
 						/>
 						<input
 							className="input-box"
@@ -69,6 +76,7 @@ export function Login() {
 							placeholder="비밀번호 입력해주세요"
 							value={password}
 							onChange={e => setPassword(e.target.value)}
+							onKeyPress={handleKeyPress}
 						/>
 					</div>
 					<div className="find-id-password-area">

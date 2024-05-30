@@ -49,8 +49,8 @@ export function SignUp() {
 			return;
 		}
 
-		if (!password) {
-			alert('비밀번호를 입력해주세요.');
+		if (!password || password.length < 8) {
+			alert('비밀번호는 최소 8자 이상 입력해주세요.');
 			return;
 		}
 
@@ -119,7 +119,7 @@ export function SignUp() {
 							onChange={e => setEmail(e.target.value)}
 						/>
 						<input
-							placeholder="비밀번호 입력해주세요"
+							placeholder="비밀번호 입력해주세요 (최소 8자)"
 							className="input-email-password"
 							type="password"
 							value={password}

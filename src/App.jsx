@@ -1,5 +1,3 @@
-import Header from './components/Header';
-import Sidebar from './components/SideBar';
 import { Login } from './pages/Login';
 import { SignUp } from './pages/SignUp';
 import { Home } from './pages/Home';

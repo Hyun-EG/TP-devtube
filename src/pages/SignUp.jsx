@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../firebase/config';
 import logo from '../assets/header_logo.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpUser } from '../redux/authAction';
 
 export function SignUp() {
 	const [name, setName] = useState('');
@@ -11,77 +11,30 @@ export function SignUp() {
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const signUpError = useSelector(state => state.auth.signUpError);
+	const signUpSuccess = useSelector(state => state.auth.signUpSuccess);
 
-	const validateName = name => {
-		const nameRegex = /^[가-힣]+$/;
-		return nameRegex.test(name);
-	};
-
-	const validateChannelName = channelName => {
-		const channelNameRegex = /^[가-힣a-zA-Z]+$/;
-		return channelNameRegex.test(channelName);
-	};
-
-	const validateEmail = email => {
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		return emailRegex.test(email);
-	};
-
-	const checkExistingEmail = async email => {
-		const q = query(collection(db, 'users'), where('email', '==', email));
-		const querySnapshot = await getDocs(q);
-		return !querySnapshot.empty;
-	};
-
-	const handleSignUp = async () => {
-		if (!validateName(name)) {
-			alert('이름이 올바르지 않습니다.');
-			return;
-		}
-
-		if (!validateChannelName(channelName)) {
-			alert('채널 이름이 올바르지 않습니다.');
-			return;
-		}
-
-		if (!validateEmail(email)) {
-			alert('이메일 형식이 올바르지 않습니다.');
-			return;
-		}
-
-		if (!password || password.length < 8) {
-			alert('비밀번호는 최소 8자 이상 입력해주세요.');
-			return;
-		}
-
-		if (password !== confirmPassword) {
-			alert('비밀번호가 일치하지 않습니다.');
-			return;
-		}
-
-		if (await checkExistingEmail(email)) {
-			alert('이미 존재하는 이메일입니다. 다른 이메일을 사용해주세요.');
-			return;
-		}
-
-		try {
-			await addDoc(collection(db, 'users'), {
-				name: name,
-				channelName: channelName,
-				email: email,
-				password: password
-			});
+	useEffect(() => {
+		if (signUpSuccess) {
 			alert('회원가입이 성공적으로 완료되었습니다!');
 			navigate('/login');
-		} catch (e) {
-			console.error('Error adding document: ', e);
-			alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
 		}
+	}, [signUpSuccess, navigate]);
+
+	const handleSignUp = () => {
+		dispatch(signUpUser(name, channelName, email, password, confirmPassword));
 	};
 
 	const handleLoginClick = () => {
 		navigate('/login');
 	};
+
+	useEffect(() => {
+		if (signUpError) {
+			alert(signUpError);
+		}
+	}, [signUpError]);
 
 	return (
 		<>

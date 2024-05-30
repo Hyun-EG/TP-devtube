@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../firebase/config';
 import logo from '../assets/header_logo.png';
+import { loginUser } from '../redux/authAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const user = useSelector(state => state.auth.user);
+	const loading = useSelector(state => state.auth.loading);
+	const error = useSelector(state => state.auth.error);
 
-	const handleLogin = async () => {
-		try {
-			const q = query(collection(db, 'users'), where('email', '==', email));
-			const querySnapshot = await getDocs(q);
-			if (querySnapshot.empty) {
-				alert('해당 이메일이 존재하지 않습니다.');
-				return;
-			}
-			querySnapshot.forEach(doc => {
-				const userData = doc.data();
-				if (userData.password === password) {
-					alert('로그인 되었습니다.');
-					navigate('/home', { state: { user: userData } });
-				} else {
-					alert('이메일 또는 비밀번호가 올바르지 않습니다.');
-				}
-			});
-		} catch (error) {
-			console.error('Error logging in: ', error);
-			alert('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
-		}
+	const handleLogin = () => {
+		dispatch(loginUser(email, password));
 	};
+
+	useEffect(() => {
+		if (user) {
+			navigate('/home');
+		}
+	}, [user, navigate]);
+
+	useEffect(() => {
+		if (error) {
+			alert(error);
+		}
+	}, [error]);
 
 	const handleSignUpClick = () => {
 		navigate('/signup');
@@ -94,7 +91,10 @@ export function Login() {
 						<span className="footer-sign-up" onClick={handleSignUpClick}>
 							회원가입
 						</span>
-						<button className="login-btn" onClick={handleLogin}>
+						<button
+							className="login-btn"
+							onClick={handleLogin}
+							disabled={loading}>
 							로그인
 						</button>
 					</div>

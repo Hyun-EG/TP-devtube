@@ -5,6 +5,7 @@ import YouTube from 'react-youtube';
 import { db } from '../firebase/config';
 import Header from '../components/Header';
 import Sidebar from '../components/SideBar';
+import { useSelector } from 'react-redux';
 
 const getWeekDates = (date, weekOffset = 0) => {
 	const currentDate = new Date(date);
@@ -20,16 +21,17 @@ const getWeekDates = (date, weekOffset = 0) => {
 	return dates;
 };
 
-export function Home() {
+export const Home = () => {
 	const [userData, setUserData] = useState(null);
 	const [weekOffset, setWeekOffset] = useState(0);
 	const [weekDates, setWeekDates] = useState(getWeekDates(new Date(), 0));
 	const location = useLocation();
+	const user = useSelector(state => state.auth.user);
 
 	useEffect(() => {
 		const getUserData = async () => {
-			if (location.state && location.state.user) {
-				const userEmail = location.state.user.email;
+			if (user) {
+				const userEmail = user.email;
 				try {
 					const q = query(
 						collection(db, 'users'),
@@ -45,7 +47,7 @@ export function Home() {
 			}
 		};
 		getUserData();
-	}, [location]);
+	}, [user]);
 
 	useEffect(() => {
 		setWeekDates(getWeekDates(new Date(), weekOffset));
@@ -158,6 +160,6 @@ export function Home() {
 			</div>
 		</>
 	);
-}
+};
 
 export default Home;

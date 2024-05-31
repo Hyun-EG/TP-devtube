@@ -1,10 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const modalSlice = createSlice({
-	name: 'modal',
-	initialState: {
-		isModalOpen: false
-	},
+const initialState = {
+	earnings: [
+		{ date: '2024.05.30', type: '조회수', amount: 300000 },
+		{ date: '2024.05.30', type: '멤버십', amount: 50000 },
+		{ date: '2024.05.30', type: '광고', amount: 750000 },
+		{ date: '2024.05.30', type: '광고', amount: 750000 },
+		{ date: '2024.05.30', type: '광고', amount: 750000 }
+	],
+	isModalOpen: false
+};
+
+const earningsSlice = createSlice({
+	name: 'earnings',
+	initialState,
 	reducers: {
 		openModal: state => {
 			state.isModalOpen = true;
@@ -15,6 +24,6 @@ const modalSlice = createSlice({
 	}
 });
 
-export const { openModal, closeModal } = modalSlice.actions;
+export const { openModal, closeModal } = earningsSlice.actions;
 
-export default modalSlice.reducer;
+export default earningsSlice.reducer;

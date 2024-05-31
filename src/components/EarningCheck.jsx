@@ -2,21 +2,28 @@ import EarningDetails from './EarningDetails';
 import ArrowLeft from '../assets/arrow_left.png';
 import ArrowRight from '../assets/arrow_right.png';
 import EarningType from './EarningType';
+import { useSelector } from 'react-redux';
 
-function EarningCheck({ setIsModalOpen }) {
+function EarningCheck({}) {
+	const earnings = useSelector(state => state.earnings.earnings);
+	const totalEarnings = earnings.reduce(
+		(sum, earning) => sum + earning.amount,
+		0
+	);
+
 	return (
 		<>
 			<div className="earningCheck">
 				<div className="earningCheck__inner">
 					<div className="earningCheck__inner_title">5월 수익</div>
-					<div className="earningCheck__inner_sub">총 1,100,000원</div>
+					<div className="earningCheck__inner_sub">
+						총 {totalEarnings.toLocaleString()}원
+					</div>
 					<div className="earningCheck__inner_contentsBox">
 						<div className="earningCheck__inner_contentsBox_contents">
-							<EarningDetails />
-							<EarningDetails />
-							<EarningDetails />
-							<EarningDetails />
-							<EarningDetails />
+							{earnings.map((earning, index) => (
+								<EarningDetails key={index} earning={earning} />
+							))}
 						</div>
 						<div className="earningCheck__inner_contentsBox_arrow">
 							<img src={ArrowLeft} alt="ArrowLeft" />

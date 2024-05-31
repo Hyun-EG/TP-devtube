@@ -4,7 +4,7 @@ import EarningGraph from '../components/EarningGraph';
 import EarningModal from '../components/EarningModal';
 
 function EarningsPage() {
-	const isModalOpen = useSelector(state => state.modal.isModalOpen);
+	const isModalOpen = useSelector(state => state.earnings.isModalOpen);
 
 	return (
 		<>

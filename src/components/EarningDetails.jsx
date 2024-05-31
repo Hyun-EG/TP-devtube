@@ -11,7 +11,7 @@ function EarningDetails({ earning }) {
 				<div className="earning_detail_grid_content">{earning.type}</div>
 				<div
 					className="earning_detail_grid_content_check"
-					onClick={() => dispatch(openModal())}>
+					onClick={() => dispatch(openModal(earning))}>
 					명세서 확인
 				</div>
 				<div className="earning_detail_grid_content_amount">

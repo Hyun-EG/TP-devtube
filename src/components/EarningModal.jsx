@@ -1,10 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../redux/reduxlSlice';
 
 function EarningModal({ isOpen }) {
 	const dispatch = useDispatch();
+	const selectedEarning = useSelector(state => state.earnings.selectedEarning);
 
-	if (!isOpen) return null;
+	if (!isOpen || !selectedEarning) return null;
 
 	return (
 		<div className="earning_modal">
@@ -12,16 +13,22 @@ function EarningModal({ isOpen }) {
 			<div className="earning_modal_inner">
 				<div className="earning_modal_inner_subtitle">
 					<div className="earning_modal_inner_subtitle_content">지급 날짜</div>
-					<div className="earning_modal_inner_subtitle_detail">2024.05.30</div>
+					<div className="earning_modal_inner_subtitle_detail">
+						{selectedEarning.date}
+					</div>
 				</div>
 				<div className="earning_modal_inner_subtitle">
 					<div className="earning_modal_inner_subtitle_content">수익 종류</div>
-					<div className="earning_modal_inner_subtitle_detail">광고</div>
+					<div className="earning_modal_inner_subtitle_detail">
+						{selectedEarning.type}
+					</div>
 				</div>
 			</div>
 			<div className="earning_modal_total">
 				<div className="earning_modal_total_content">지급 총액</div>
-				<div className="earning_modal_total_content">3,000,000원</div>
+				<div className="earning_modal_total_content">
+					{selectedEarning.amount.toLocaleString()}원
+				</div>
 			</div>
 			<div
 				className="earning_modal_button"

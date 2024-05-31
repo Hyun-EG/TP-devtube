@@ -1,0 +1,156 @@
+* {
+	font-family: pretendard;
+  box-sizing: border-box;
+}
+
+.requests {
+  @include column-flex(start, start);
+
+	margin-left: 250px;
+  margin-right: 56px;
+
+	.header {
+		margin: 30px 0px 32px 30px;
+
+    .board_title {
+      display: block;
+
+      width: 100vw;
+      padding-bottom: 10px;
+      border-bottom: 1px solid lightgrey;
+
+      font-size: 25px;
+      font-weight: 600;
+    } 
+  }
+
+  .requests_wrapper {
+    @include column-flex;
+    align-items: stretch;
+
+    width: 100%;
+		margin: 0 30px;
+    padding: 30px;
+
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    
+    .contents {
+      @include flex;
+
+      padding-bottom: 10px;
+      gap: 10px;
+
+      .item {
+        @include column-flex;
+        width: 50%;
+      }
+
+      .item--detail {
+        @include column-flex;
+        width: 100%;
+        
+        .input_box {
+          max-width: 100vw;
+          height: 50px;
+  
+          border: 1px solid lightgrey;
+          border-radius: 8px;
+          
+          font-size: 16px;
+          color: #6D6F71;
+          &:focus {
+            outline: none;
+          }
+        }  
+
+      }
+
+      .input_title {
+        width: 100%;
+        margin-bottom: 5px;
+
+        color: #282828;
+      }
+
+      .input_box {
+        width: 100%;
+        max-width: 515px;
+        height: 50px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+
+        border: 1px solid lightgrey;
+        border-radius: 8px;
+        
+        font-size: 16px;
+        color: #6D6F71;
+        &:focus {
+          outline: none;
+        }
+      }  
+    }
+  }
+  
+  .list-wrapper {
+    @include column-flex;
+    flex-wrap: wrap;
+
+    width: 100%;
+		margin: 15px 30px;
+    padding: 15px;
+
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+  }
+
+  .requests_list {
+    @include column-flex;
+
+    width: 100%;
+		margin: 0 30px;
+    padding: 30px;
+
+    background: #fff;
+  }
+  span.text {
+    display: block;
+    font-weight: 600;
+    color: #6D6F71;
+    text-align: center;
+  }
+
+  p {
+    display: block;
+    color: #065FD4;
+    text-align: center;
+  }
+  
+  .btn_submit {
+    width: 110.5px;
+    height: 42px;
+    margin: 10px;
+
+    background-color: #065FD4;
+    border: 1px solid #065FD4;
+    border-radius: 4px;    
+
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .btn_delete{
+    width: 100px;
+    height: 35px;
+
+    background-color: #fff;
+    border: 1px solid #6D6F71;
+    border-radius: 4px;
+
+    color: #6d6f71;
+    cursor: pointer;
+  }
+}
+

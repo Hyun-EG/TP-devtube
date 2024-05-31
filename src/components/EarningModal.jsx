@@ -1,4 +1,6 @@
-function EarningModal() {
+function EarningModal({ isOpen, onClose }) {
+	if (!isOpen) return null;
+
 	return (
 		<div className="earning_modal">
 			<div className="earning_modal_title">수익명세서</div>
@@ -16,7 +18,11 @@ function EarningModal() {
 				<div className="earning_modal_total_content">지급 총액</div>
 				<div className="earning_modal_total_content">3,000,000원</div>
 			</div>
-			<div className="earning_modal_button">
+			<div
+				className="earning_modal_button"
+				onClick={() => {
+					onClose();
+				}}>
 				<div className="earning_modal_button_content">확인</div>
 			</div>
 		</div>

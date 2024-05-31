@@ -3,7 +3,7 @@ import ArrowLeft from '../assets/arrow_left.png';
 import ArrowRight from '../assets/arrow_right.png';
 import EarningType from './EarningType';
 
-function EarningCheck() {
+function EarningCheck({ setIsModalOpen }) {
 	return (
 		<>
 			<div className="earningCheck">
@@ -12,11 +12,11 @@ function EarningCheck() {
 					<div className="earningCheck__inner_sub">총 1,100,000원</div>
 					<div className="earningCheck__inner_contentsBox">
 						<div className="earningCheck__inner_contentsBox_contents">
-							<EarningDetails />
-							<EarningDetails />
-							<EarningDetails />
-							<EarningDetails />
-							<EarningDetails />
+							<EarningDetails setIsModalOpen={setIsModalOpen} />
+							<EarningDetails setIsModalOpen={setIsModalOpen} />
+							<EarningDetails setIsModalOpen={setIsModalOpen} />
+							<EarningDetails setIsModalOpen={setIsModalOpen} />
+							<EarningDetails setIsModalOpen={setIsModalOpen} />
 						</div>
 						<div className="earningCheck__inner_contentsBox_arrow">
 							<img src={ArrowLeft} alt="ArrowLeft" />

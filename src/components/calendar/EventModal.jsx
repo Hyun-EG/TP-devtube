@@ -1,7 +1,8 @@
-// EventModal.js
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
+import ModalInputs from './ModalInputs';
+import Buttons from './Buttons';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -33,53 +34,13 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
-const FormField = styled.div`
-  margin-bottom: 1rem;
-`;
-
-const Label = styled.label`
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-`;
-
-const Input = styled.input`
-  padding: 0.5rem;
-  font-size: 1rem;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-`;
-
-const Button = styled.button`
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;  
-
-  &.save {
-    background-color: #007bff;
-    color: white;
-  }
-
-  &.cancel {
-    background-color: #ccc;
-  }
-
-  &.delete {
-    background-color: #ff4d4d;
-    color: white;
-  }
-`;
-
-const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event }) => {
+const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event, headerTitle }) => {
   const [title, setTitle] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [note, setNote] = useState('');
+
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (event) {
@@ -95,7 +56,19 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event }) => {
     }
   }, [event]);
 
-  const handleSubmit = () => {
+  const validate = () => {
+    const newErrors = {};
+    if (!title) newErrors.title = 'title을 입력해 주세요.';
+    if (!start) newErrors.start = 'start를 입력해 주세요.';
+    if (!end) newErrors.end = 'end를 입력해 주세요.';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
     onSubmit({
       ...event,
       title,
@@ -116,45 +89,47 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event }) => {
   return (
     <ModalOverlay onClick={onRequestClose}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
-        <ModalHeader>{event ? 'Edit Event' : 'New Event'}</ModalHeader>
-        <Form>
-          <FormField>
-            <Label>Title</Label>
-            <Input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label>Start</Label>
-            <Input
-              type="datetime-local"
-              value={start}
-              onChange={(e) => setStart(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label>End</Label>
-            <Input
-              type="datetime-local"
-              value={end}
-              onChange={(e) => setEnd(e.target.value)}
-            />
-          </FormField>
-          <ButtonGroup>
-            <Button className="save" type="button" onClick={handleSubmit}>
-              Save
-            </Button>
-            <Button className="cancel" type="button" onClick={onRequestClose}>
-              Cancel
-            </Button>
-            {event && (
-              <Button className="delete" type="button" onClick={handleDelete}>
-                Delete
-              </Button>
-            )}
-          </ButtonGroup>
+        <ModalHeader>{headerTitle}</ModalHeader>
+        <Form onSubmit={handleSubmit}>
+          <ModalInputs
+            label="Title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            error={!!errors.title}
+            errorMessage={errors.title}
+          />
+          <ModalInputs
+            label="Start"
+            type="datetime-local"
+            value={start}
+            onChange={(e) => setStart(e.target.value)}
+            required
+            error={!!errors.start}
+            errorMessage={errors.start}
+          />
+          <ModalInputs
+            label="End"
+            type="datetime-local"
+            value={end}
+            onChange={(e) => setEnd(e.target.value)}
+            required
+            error={!!errors.end}
+            errorMessage={errors.end}
+          />
+          <ModalInputs
+            label="Note"
+            type="textarea"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+          <Buttons
+            onSave={handleSubmit}
+            onCancel={onRequestClose}
+            onDelete={handleDelete}
+            showDelete={!!event}
+          />
         </Form>
       </ModalContent>
     </ModalOverlay>

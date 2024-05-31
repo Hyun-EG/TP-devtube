@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+/* ▼ 프리텐다드 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+  font-family: 'pretendard';
+}
+
+/* ▲ 프리텐다드 */
+
+
+
+
 .rbc-btn {
   color: inherit;
   font: inherit;
@@ -64,6 +76,7 @@ button.rbc-input::-moz-focus-inner {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: 'pretendard';
 }
 
 .rbc-rtl {
@@ -118,7 +131,6 @@ button.rbc-input::-moz-focus-inner {
   font-size: 0.95rem;
   background: none;
   margin: 0;
-  padding: 0;
   border: none;
   cursor: pointer;
   -webkit-user-select: text;
@@ -163,7 +175,7 @@ button.rbc-input::-moz-focus-inner {
 
 /* 오늘에 해당하는 칸에 색 입히기 */
 .rbc-today {
-  background-color: #E6E6E6;
+  background-color: #FAF2F2;
 }
 
 .rbc-toolbar {
@@ -247,32 +259,25 @@ button.rbc-input::-moz-focus-inner {
 }
 
 
-/* ▼ 버튼 묶음, 버튼 간격 */
+/* ▼ 버튼 묶음, 버튼 간격 커스텀 */
 .rbc-btn-group>button {
   margin-left: 0;
   margin-right: 0.5rem;
+}
+
+.rbc-btn-group:first-child>button {
+  border: none;
 }
 
 .rbc-btn-group:first-child>button:first-child {
   display: none;
 }
 
-/* back 버튼 */
-.rbc-btn-group:first-child>button:nth-child(2) {
-  color: transparent;
-  position: relative;
+.rbc-btn-group:last-child>button:last-child {
+  display: none;
 }
 
-.rbc-btn-group:first-child>button:nth-child(2)::before {
-  content: '<';
-  color: red;
-  font-size: 1.5rem;
-  position: absolute;
-  left: 1.5rem;
-  top: 0;
-}
-
-.rbc-btn-group>button:last-child {
+.rbc-btn-group>button:nth-child(3) {
   margin-left: 0;
   margin-right: 0;
 }
@@ -328,6 +333,10 @@ button.rbc-input::-moz-focus-inner {
   }
 }
 
+.time-slot-blue {
+  background-color: #DEF1FF;
+}
+
 /* time bar 영역 */
 .rbc-event,
 .rbc-day-slot .rbc-background-event {
@@ -355,14 +364,16 @@ button.rbc-input::-moz-focus-inner {
   pointer-events: none;
 }
 
+/* 선택 시 색상 변경 커스텀 */
 .rbc-event.rbc-selected,
 .rbc-day-slot .rbc-selected.rbc-background-event {
-  background-color: #265985;
+  background-color: #065FD4;
+  color: #DEF1FF;
 }
 
 .rbc-event:focus,
 .rbc-day-slot .rbc-background-event:focus {
-  outline: 5px auto #3b99fc;
+  outline: 5px auto #065FD4;
 }
 
 .rbc-event-label {
@@ -427,6 +438,28 @@ button.rbc-input::-moz-focus-inner {
   color: #265985;
 }
 
+/* ▼ 당일 일정 커스텀 */
+.one-day-schedule {
+  background-color: transparent;
+  color: #282828;
+  position: relative;
+  left: 1rem;
+  width: calc(100% - 1rem);
+  /* 현재 너비에서 1rem 만큼을 빼기*/
+
+}
+
+.one-day-schedule::before {
+  content: '●';
+  color: #065FD4;
+  font-size: 0.7rem;
+  position: absolute;
+  left: -0.8rem;
+  top: 0.28rem;
+}
+
+/* ▲ 당일 일정 커스텀 */
+
 .rbc-month-view {
   position: relative;
   border: 1px solid #ddd;
@@ -457,6 +490,28 @@ button.rbc-input::-moz-focus-inner {
   -ms-flex-direction: row;
   flex-direction: row;
 }
+
+/* ▼ 요일 간격 커스텀 */
+.rbc-month-header .rbc-header {
+  text-align: start;
+  padding: 0.3rem 0 0.3rem 0.5rem;
+}
+
+
+/* ▲ 요일 간격 커스텀 */
+
+/* ▼ 일요일, 토요일 글자 색상 커스텀 */
+.rbc-month-header .rbc-header:first-child {
+  color: #CC0000;
+  background-color: #F9F9F9;
+}
+
+.rbc-month-header .rbc-header:last-child {
+  color: #065FD4;
+  background-color: #F9F9F9;
+}
+
+/* ▲ 일요일, 토요일 글자 색상 커스텀 */
 
 .rbc-month-row {
   display: -webkit-box;
@@ -522,7 +577,7 @@ button.rbc-input::-moz-focus-inner {
 
 /* ▼ 직접 추가. 주말 회색 처리 */
 .rbc-day-bg:first-child {
-  background-color: #FAFAFA;
+  background-color: #F9F9F9;
 }
 
 .rbc-day-bg:last-child {
@@ -646,6 +701,10 @@ button.rbc-input::-moz-focus-inner {
   flex-direction: column;
   min-height: 100%;
 }
+
+/* .rbc-time-column {
+  display: none;
+} */
 
 .rbc-time-column .rbc-timeslot-group {
   -webkit-box-flex: 1;

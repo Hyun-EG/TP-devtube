@@ -80,6 +80,7 @@ const BigCalendar = () => {
     end: dayjs(event.end, 'YYYY-MM-DDTHH:mm').toDate()
   }));
 
+  // className customize
   const eventPropGetter = useCallback(
     (event, start, end, isSelected) => ({
       ...(dayjs(start).hour() === 0 && // 시작 시간이 오전 12:00이고

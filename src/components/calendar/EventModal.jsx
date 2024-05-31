@@ -3,6 +3,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ModalInputs from './ModalInputs';
 import Buttons from './Buttons';
+import { TimePickerInputEnd, TimePickerInputStart } from './TimePickerInput';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -109,6 +110,7 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event, headerT
             error={!!errors.start}
             errorMessage={errors.start}
           />
+          <TimePickerInputStart />
           <ModalInputs
             label="End"
             type="datetime-local"
@@ -118,6 +120,7 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event, headerT
             error={!!errors.end}
             errorMessage={errors.end}
           />
+          <TimePickerInputEnd />
           <ModalInputs
             label="Note"
             type="textarea"

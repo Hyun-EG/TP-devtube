@@ -1,3 +1,6 @@
+// 참조: https://jquense.github.io/react-big-calendar/examples/?path=/docs/props--formats
+// 날짜 표기 방식 정리.
+
 export const messages = {
   showMore: total => `더 보기(${total}개)`, // 'show more'를 '더 보기'로 수정
   previous: '<',

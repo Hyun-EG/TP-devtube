@@ -3,7 +3,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 import ModalInputs from './ModalInputs';
 import Buttons from './Buttons';
-import { TimePickerInputEnd, TimePickerInputStart } from './TimePickerInput';
+import { TimePickerEnd, TimePickerStart } from './TimePickerInput';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -92,41 +92,35 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event, headerT
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>{headerTitle}</ModalHeader>
         <Form onSubmit={handleSubmit}>
-          <ModalInputs
-            label="Title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            error={!!errors.title}
-            errorMessage={errors.title}
-          />
-          <ModalInputs
-            label="Start"
-            type="datetime-local"
-            value={start}
-            onChange={(e) => setStart(e.target.value)}
-            required
-            error={!!errors.start}
-            errorMessage={errors.start}
-          />
-          <TimePickerInputStart />
-          <ModalInputs
-            label="End"
-            type="datetime-local"
-            value={end}
-            onChange={(e) => setEnd(e.target.value)}
-            required
-            error={!!errors.end}
-            errorMessage={errors.end}
-          />
-          <TimePickerInputEnd />
-          <ModalInputs
-            label="Note"
-            type="textarea"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
+          <ul>
+            <li style={{ display: 'flex' }}>
+              <span style={{ marginRight: '1rem' }}>제목</span>
+              <ModalInputs
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+                error={!!errors.title}
+                errorMessage={errors.title}
+              />
+            </li>
+            <li style={{ display: 'flex' }}>
+              <span style={{ marginRight: '1rem' }}>시작</span>
+              <TimePickerStart />
+            </li>
+            <li style={{ display: 'flex' }}>
+              <span style={{ marginRight: '1rem' }}>종료</span>
+              <TimePickerEnd />
+            </li>
+            <li style={{ display: 'flex' }}>
+              <span style={{ marginRight: '1rem' }}>메모</span>
+              <ModalInputs
+                type="textarea"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+              />
+            </li>
+          </ul>
           <Buttons
             onSave={handleSubmit}
             onCancel={onRequestClose}

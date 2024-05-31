@@ -1,18 +1,16 @@
 import dayjs from 'dayjs';
 // ▼ KST timezone
-import 'dayjs/locale/ko'
-
+// import 'dayjs/locale/ko'
+import ko from 'date-fns/locale/ko';
 import React, { useState } from 'react'
-import ReactDatePicker from 'react-datepicker'
+import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 
 // ▼ 로컬라이저(지역화)
-dayjs.locale('ko')
-// const localizer = dayjsLocalizer(dayjs);
+registerLocale('ko', ko);
 
-
-export const TimePickerInputStart = () => {
+export const TimePickerStart = () => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <ReactDatePicker
@@ -32,7 +30,7 @@ export const TimePickerInputStart = () => {
   );
 }
 
-export const TimePickerInputEnd = () => {
+export const TimePickerEnd = () => {
   const [endDate, setEndDate] = useState(new Date());
   return (
     <>

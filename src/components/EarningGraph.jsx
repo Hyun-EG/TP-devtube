@@ -1,5 +1,6 @@
 import RectangleBlue from '../assets/rectangle_blue.png';
 import RectangleGray from '../assets/rectangle_gray.png';
+import Graph from './Graph';
 
 function EarningGraph() {
 	return (
@@ -13,6 +14,7 @@ function EarningGraph() {
 						<span className="graph__inner_box_name">조회수</span>
 					</div>
 				</div>
+				<Graph />
 			</div>
 		</>
 	);

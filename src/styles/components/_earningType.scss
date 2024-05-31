@@ -1,12 +1,12 @@
 .earning_type {
-	padding: 0.5556vw 0;
-	height: 3.0556vw;
+	padding: 0.39vh 0;
+	height: 4.3vh;
 
 	&_box {
 		@include flex(between, start);
 
 		&_content {
-			font-size: 1.1111vw;
+			font-size: 1.56vh;
 		}
 	}
 }

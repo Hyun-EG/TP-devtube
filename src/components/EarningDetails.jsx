@@ -1,4 +1,9 @@
+import { useDispatch } from 'react-redux';
+import { openModal } from '../redux/reduxlSlice';
+
 function EarningDetails({ setIsModalOpen }) {
+	const dispatch = useDispatch();
+
 	return (
 		<div className="earning_detail">
 			<div className="earning_detail_grid">
@@ -6,7 +11,7 @@ function EarningDetails({ setIsModalOpen }) {
 				<div className="earning_detail_grid_content">광고</div>
 				<div
 					className="earning_detail_grid_content_check"
-					onClick={() => setIsModalOpen(true)}>
+					onClick={() => dispatch(openModal())}>
 					명세서 확인
 				</div>
 				<div className="earning_detail_grid_content_amount">3,000,000원</div>

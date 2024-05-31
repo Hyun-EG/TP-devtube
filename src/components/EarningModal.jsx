@@ -1,4 +1,9 @@
-function EarningModal({ isOpen, onClose }) {
+import { useDispatch } from 'react-redux';
+import { closeModal } from '../redux/reduxlSlice';
+
+function EarningModal({ isOpen }) {
+	const dispatch = useDispatch();
+
 	if (!isOpen) return null;
 
 	return (
@@ -20,9 +25,7 @@ function EarningModal({ isOpen, onClose }) {
 			</div>
 			<div
 				className="earning_modal_button"
-				onClick={() => {
-					onClose();
-				}}>
+				onClick={() => dispatch(closeModal())}>
 				<div className="earning_modal_button_content">확인</div>
 			</div>
 		</div>

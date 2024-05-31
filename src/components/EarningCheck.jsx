@@ -12,11 +12,11 @@ function EarningCheck({ setIsModalOpen }) {
 					<div className="earningCheck__inner_sub">총 1,100,000원</div>
 					<div className="earningCheck__inner_contentsBox">
 						<div className="earningCheck__inner_contentsBox_contents">
-							<EarningDetails setIsModalOpen={setIsModalOpen} />
-							<EarningDetails setIsModalOpen={setIsModalOpen} />
-							<EarningDetails setIsModalOpen={setIsModalOpen} />
-							<EarningDetails setIsModalOpen={setIsModalOpen} />
-							<EarningDetails setIsModalOpen={setIsModalOpen} />
+							<EarningDetails />
+							<EarningDetails />
+							<EarningDetails />
+							<EarningDetails />
+							<EarningDetails />
 						</div>
 						<div className="earningCheck__inner_contentsBox_arrow">
 							<img src={ArrowLeft} alt="ArrowLeft" />

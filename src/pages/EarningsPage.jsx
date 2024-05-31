@@ -1,21 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import EarningCheck from '../components/EarningCheck';
 import EarningGraph from '../components/EarningGraph';
 import EarningModal from '../components/EarningModal';
 
 function EarningsPage() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const isModalOpen = useSelector(state => state.modal.isModalOpen);
 
 	return (
 		<>
 			<div className="earnings">
 				<div className="earnings__title">수익 내역</div>
 				<EarningGraph />
-				<EarningCheck setIsModalOpen={setIsModalOpen} />
-				<EarningModal
-					isOpen={isModalOpen}
-					onClose={() => setIsModalOpen(false)}
-				/>
+				<EarningCheck />
+				<EarningModal isOpen={isModalOpen} />
 			</div>
 		</>
 	);

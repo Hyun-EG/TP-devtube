@@ -1,43 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, logout } from '../redux/authSlice'; // 경로를 올바르게 설정하세요
 import ProfileImg from '../assets/profile_img.png';
 import Dashboard from '../assets/dashboard.png';
 import Earnings from '../assets/earning.png';
 import Requests from '../assets/requests.png';
 import Calendar from '../assets/calendar.png';
 import Logout from '../assets/Logout.png';
-import { db } from '../firebase/config';
 
 function Sidebar() {
-	const [userData, setUserData] = useState(null);
-	const location = useLocation();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const user = useSelector(state => state.auth.user); // Redux 상태에서 사용자 정보를 가져옵니다.
 
 	useEffect(() => {
-		const getUserData = async () => {
-			if (location.state && location.state.user) {
-				const userEmail = location.state.user.email;
-				try {
-					const q = query(
-						collection(db, 'users'),
-						where('email', '==', userEmail)
-					);
-					const querySnapshot = await getDocs(q);
-					querySnapshot.forEach(doc => {
-						setUserData(doc.data());
-					});
-				} catch (error) {
-					console.error('Error getting user document:', error);
-				}
-			}
-		};
-		getUserData();
-	}, [location]);
+		const storedUser = localStorage.getItem('user');
+		if (storedUser) {
+			dispatch(setUser(JSON.parse(storedUser))); // 로컬 스토리지에서 사용자 데이터를 불러와 Redux 상태 갱신
+		}
+	}, [dispatch]);
 
-	const handleLogout = () => {
-		setUserData(null);
-		alert('로그아웃 되었습니다.');
+	const handleLogoutClick = () => {
+		dispatch(logout());
 		navigate('/login');
 	};
 
@@ -45,12 +30,10 @@ function Sidebar() {
 		<div className="sidebar">
 			<div className="profile">
 				<img className="profile__img" src={ProfileImg} alt="ProfileImg" />
-				{userData && (
-					<>
-						<span className="profile__channel">{userData.channelName}</span>
-						<span className="profile__name">{userData.name}</span>
-					</>
-				)}
+				<span className="profile__channel">
+					{user?.channelName || 'Channel name'}
+				</span>
+				<span className="profile__name">{user?.name || 'Name'}</span>
 			</div>
 
 			<div className="menu">
@@ -73,9 +56,9 @@ function Sidebar() {
 			</div>
 
 			<div className="logout">
-				<div className="logout_content" onClick={handleLogout}>
+				<div className="logout_content">
 					<img src={Logout} alt="Logout" />
-					<span>Logout</span>
+					<span onClick={handleLogoutClick}>Logout</span>
 				</div>
 			</div>
 		</div>

@@ -8,7 +8,7 @@ import {
 	setSignUpSuccess,
 	clearSignUpSuccess
 } from './authSlice';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
 export const loginUser = (email, password) => async dispatch => {
@@ -101,3 +101,19 @@ export const signUpUser =
 			dispatch(setLoading(false));
 		}
 	};
+
+export const updateUser = (userId, updatedData) => async dispatch => {
+	dispatch(setLoading(true));
+	dispatch(clearError());
+
+	try {
+		const userRef = doc(db, 'users', userId);
+		await updateDoc(userRef, updatedData);
+		const updatedUser = await getUserByEmail(updatedData.email);
+		dispatch(setUser(updatedUser));
+	} catch (error) {
+		dispatch(setError('사용자 정보 업데이트 중 오류가 발생했습니다.'));
+	} finally {
+		dispatch(setLoading(false));
+	}
+};

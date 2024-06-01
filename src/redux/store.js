@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
 import userReducer from './userSlice';
-import weekReducer from './weekSlice';
+import eventsReducer from './eventsSlice';
 
 const store = configureStore({
 	reducer: {
 		auth: authReducer,
 		user: userReducer,
-		week: weekReducer
+		events: eventsReducer
 	}
 });
 

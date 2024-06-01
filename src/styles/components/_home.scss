@@ -5,7 +5,9 @@
 .home {
 	height: 93.5vh;
 	margin-left: 250px;
+
 	@include column-flex(start, start);
+
 	.header {
 		margin: 30px 0px 0px 30px;
 		.board-title {
@@ -16,10 +18,13 @@
 			border-bottom: 1px solid lightgrey;
 		}
 	}
+
 	.board-wrapper {
 		margin: 15px 0px 0px 30px;
+
 		.first-line {
 			@include flex;
+
 			.impormation-channel-area {
 				width: 539px;
 				height: 300px;
@@ -28,23 +33,28 @@
 				margin-top: 10px;
 				margin-right: 25px;
 				border: 1px solid #d9d9d9;
+
 				.__content-title {
 					@include flex(between);
 					font-size: 20px;
 					margin: 10px 10px 45px 10px;
 				}
+
 				.edit-btn {
 					width: 80px;
 					height: 30px;
 					border-radius: 4px;
 					border: 1px solid #d9d9d9;
 					background: #fff;
+					cursor: pointer;
 				}
+
 				.__content {
 					@include flex(between);
 					margin: 15px 10px 15px 10px;
 				}
 			}
+
 			.shorts-area {
 				width: 539px;
 				height: 300px;
@@ -52,11 +62,13 @@
 				background: #fff;
 				margin-top: 10px;
 				border: 1px solid #d9d9d9;
+
 				.__content-title {
 					@include column-flex(center, start);
 					margin: 10px 0 10px 10px;
 					font-size: 20px;
 				}
+
 				.video {
 					@include flex;
 					width: 496px;
@@ -65,36 +77,57 @@
 				}
 			}
 		}
+
 		.schedule-area {
 			width: 1110px;
 			background: #fff;
 			border-radius: 8px;
 			margin-top: 25px;
 			border: 1px solid #d9d9d9;
+
 			.__title {
 				@include flex(between);
 				margin: 10px;
 			}
+
 			.__btn {
 				margin: 3px;
 			}
+
 			.schedule {
 				width: 1080px;
 				margin: 0 auto;
+
 				table {
 					width: 100%;
 					border-collapse: collapse;
-					th,
+
+					thead th,
 					td {
 						border: 1px solid #d9d9d9;
 						padding: 10px;
+						white-space: nowrap;
+						width: 165px;
+						height: 37px;
+					}
+
+					tbody th {
+						background: #f0f0f0;
 						text-align: center;
 					}
-					th {
-						background: #f0f0f0;
-					}
-					td {
+
+					tbody td {
+						width: 165px;
 						height: 100px;
+						overflow: auto;
+					}
+
+					.today {
+						color: red;
+					}
+
+					.date {
+						font-size: 0.8em;
 					}
 				}
 			}

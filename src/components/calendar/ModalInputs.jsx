@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import TimePickerInput from './TimePickerInput';
+import TimePickerInput from './TimePickerInput';
 
 const FormField = styled.div`
   margin-bottom: 1rem;
@@ -31,15 +31,22 @@ const ErrorMessage = styled.div`
 const ModalInputs = ({ label, type, value, onChange, required, error, errorMessage }) => (
   <FormField>
     <Label>{label}</Label>
-    {type === 'textarea' ? (
+    {type === 'textarea' && (
       <TextArea value={value} onChange={onChange} required={required} error={error} />
-    ) : (
+    )}
+    {type === 'text' && (
       <Input type={type} value={value} onChange={onChange} required={required} error={error} />
     )}
+    {type === 'date' && (
+      <TimePickerInput
+        selectedDate={value}
+        onChange={onChange}
+        placeholder={label}
+        error={error}
+      />
+    )}
     {error && <ErrorMessage>{errorMessage}</ErrorMessage>}
-
   </FormField>
 );
 
 export default ModalInputs;
-

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalInputs from './ModalInputs';
 import Buttons from './Buttons';
-import { TimePickerEnd, TimePickerStart } from './TimePickerInput';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -37,31 +35,30 @@ const Form = styled.form`
 
 const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event, headerTitle }) => {
   const [title, setTitle] = useState('');
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
+  const [start, setStart] = useState(new Date());
+  const [end, setEnd] = useState(new Date());
   const [note, setNote] = useState('');
-
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (event) {
       setTitle(event.title || '');
-      setStart(moment(event.start).format('YYYY-MM-DDTHH:mm') || '');
-      setEnd(moment(event.end).format('YYYY-MM-DDTHH:mm') || '');
+      setStart(event.start ? new Date(event.start) : new Date());
+      setEnd(event.end ? new Date(event.end) : new Date());
       setNote(event.note || '');
     } else {
       setTitle('');
-      setStart('');
-      setEnd('');
+      setStart(new Date());
+      setEnd(new Date());
       setNote('');
     }
   }, [event]);
 
   const validate = () => {
     const newErrors = {};
-    if (!title) newErrors.title = 'title을 입력해 주세요.';
-    if (!start) newErrors.start = 'start를 입력해 주세요.';
-    if (!end) newErrors.end = 'end를 입력해 주세요.';
+    if (!title) newErrors.title = '제목을 입력해 주세요.';
+    if (!start) newErrors.start = '시작일을 입력해 주세요.';
+    if (!end) newErrors.end = '종료일을 입력해 주세요.';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -70,13 +67,15 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event, headerT
     e.preventDefault();
     if (!validate()) return;
 
-    onSubmit({
+    const updatedEvent = {
       ...event,
       title,
       start,
       end,
       note,
-    });
+    };
+
+    onSubmit(updatedEvent);
     onRequestClose();
   };
 
@@ -92,35 +91,39 @@ const EventModal = ({ isOpen, onRequestClose, onSubmit, onDelete, event, headerT
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalHeader>{headerTitle}</ModalHeader>
         <Form onSubmit={handleSubmit}>
-          <ul>
-            <li style={{ display: 'flex' }}>
-              <span style={{ marginRight: '1rem' }}>제목</span>
-              <ModalInputs
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-                error={!!errors.title}
-                errorMessage={errors.title}
-              />
-            </li>
-            <li style={{ display: 'flex' }}>
-              <span style={{ marginRight: '1rem' }}>시작</span>
-              <TimePickerStart />
-            </li>
-            <li style={{ display: 'flex' }}>
-              <span style={{ marginRight: '1rem' }}>종료</span>
-              <TimePickerEnd />
-            </li>
-            <li style={{ display: 'flex' }}>
-              <span style={{ marginRight: '1rem' }}>메모</span>
-              <ModalInputs
-                type="textarea"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-              />
-            </li>
-          </ul>
+          <ModalInputs
+            label="제목"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            error={!!errors.title}
+            errorMessage={errors.title}
+          />
+          <ModalInputs
+            label="시작"
+            type="date"
+            value={start}
+            onChange={setStart}
+            required
+            error={!!errors.start}
+            errorMessage={errors.start}
+          />
+          <ModalInputs
+            label="종료"
+            type="date"
+            value={end}
+            onChange={setEnd}
+            required
+            error={!!errors.end}
+            errorMessage={errors.end}
+          />
+          <ModalInputs
+            label="메모"
+            type="textarea"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
           <Buttons
             onSave={handleSubmit}
             onCancel={onRequestClose}

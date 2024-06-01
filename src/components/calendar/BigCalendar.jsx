@@ -46,7 +46,11 @@ const BigCalendar = () => {
 
   // 일정 수정. 일정 막대를 클릭하면 일정을 수정하는 모달창이 뜬다.
   const handleSelectEvent = (event) => {
-    setSelectedEvent(event);
+    setSelectedEvent({
+      ...event,
+      start: dayjs(event.start).toDate(),
+      end: dayjs(event.end).toDate(),
+    });
     setHeaderTitle('일정 수정하기');
     setModalIsOpen(true);
   };
@@ -59,10 +63,16 @@ const BigCalendar = () => {
 
   // 모달창에서 새 일정 또는 수정한 일정 저장하기.
   const handleModalSubmit = (updatedEvent) => {
+    const eventToSave = {
+      ...updatedEvent,
+      start: dayjs(updatedEvent.start).format('YYYY-MM-DDTHH:mm'),
+      end: dayjs(updatedEvent.end).format('YYYY-MM-DDTHH:mm'),
+    };
+
     if (updatedEvent.id) {
-      dispatch(updateEvent(updatedEvent));
+      dispatch(updateEvent(eventToSave));
     } else {
-      dispatch(addEvent(updatedEvent));
+      dispatch(addEvent(eventToSave));
     }
     setModalIsOpen(false);
   };

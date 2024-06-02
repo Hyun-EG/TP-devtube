@@ -37,9 +37,6 @@ function EarningCheck({}) {
 					<div className="earningCheck__inner_contentsBox">
 						<div className="earningCheck__inner_contentsBox_contents">
 							<EarningType />
-							<EarningType />
-							<EarningType />
-							<EarningType />
 						</div>
 					</div>
 				</div>

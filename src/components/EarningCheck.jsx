@@ -2,7 +2,8 @@ import EarningDetails from './EarningDetails';
 import ArrowLeft from '../assets/arrow_left.png';
 import ArrowRight from '../assets/arrow_right.png';
 import EarningType from './EarningType';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPage } from '../redux/reduxlSlice';
 
 function EarningCheck({}) {
 	const earnings = useSelector(state => state.earnings.earnings);
@@ -10,6 +11,26 @@ function EarningCheck({}) {
 		(sum, earning) => sum + earning.amount,
 		0
 	);
+
+	const dispatch = useDispatch();
+	const currentPage = useSelector(state => state.earnings.currentPage);
+	const itemsPerPage = 5;
+	const totalPages = Math.ceil(earnings.length / itemsPerPage);
+
+	const handlePrevPage = () => {
+		if (currentPage > 1) {
+			dispatch(setCurrentPage(currentPage - 1));
+		}
+	};
+
+	const handleNextPage = () => {
+		if (currentPage < totalPages) {
+			dispatch(setCurrentPage(currentPage + 1));
+		}
+	};
+
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const selectedEarning = earnings.slice(startIndex, startIndex + itemsPerPage);
 
 	return (
 		<>
@@ -21,13 +42,13 @@ function EarningCheck({}) {
 					</div>
 					<div className="earningCheck__inner_contentsBox">
 						<div className="earningCheck__inner_contentsBox_contents">
-							{earnings.map((earning, index) => (
+							{selectedEarning.map((earning, index) => (
 								<EarningDetails key={index} earning={earning} />
 							))}
 						</div>
 						<div className="earningCheck__inner_contentsBox_arrow">
-							<img src={ArrowLeft} alt="ArrowLeft" />
-							<img src={ArrowRight} alt="ArrowRight" />
+							<img src={ArrowLeft} alt="ArrowLeft" onClick={handlePrevPage} />
+							<img src={ArrowRight} alt="ArrowRight" onClick={handleNextPage} />
 						</div>
 					</div>
 				</div>

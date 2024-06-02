@@ -10,9 +10,9 @@ const initialState = {
 		{ id: 3, date: '2024.05.30', type: '광고', amount: 750000 },
 		{ id: 4, date: '2024.05.30', type: '광고', amount: 750000 },
 		{ id: 5, date: '2024.05.30', type: '광고', amount: 750000 },
-		{ id: 6, date: '2024.05.30', type: '슈퍼챗', amount: 750000 },
-		{ id: 7, date: '2024.05.30', type: '슈퍼챗', amount: 750000 },
-		{ id: 8, date: '2024.05.30', type: '슈퍼챗', amount: 750000 }
+		{ id: 6, date: '2024.05.30', type: '슈퍼챗', amount: 5000 },
+		{ id: 7, date: '2024.05.30', type: '슈퍼챗', amount: 5000 },
+		{ id: 8, date: '2024.05.30', type: '슈퍼챗', amount: 10000 }
 	]
 };
 

@@ -21,7 +21,7 @@ const DragAndDropCalendar = withDragAndDrop(Calendar)
 
 const CalendarChild = ({ events, onEventDrop, onEventResize, onSelectSlot, onSelectEvent, eventPropGetter }) => {
 
-  // ReactBigCalendar 중 dragAndDrop add-on의 기본 양식.
+  // ReactBigCalendar 중 dragAndDrop add-on의 기본 양식에 일부 추가함.
   return (
     <DragAndDropCalendar
       culture='ko'

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Calendar, dayjsLocalizer, Views } from 'react-big-calendar';
+// ▼ React Big Calendar의 addon. available drag and drop, and resize events 
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import dayjs from 'dayjs';
+// ▼ KST timezone
 import 'dayjs/locale/ko'
 // drag and drop 관련 CSS(없으면 dragAndDrop도 resize도 잘 안 됩니다.)
 import '../css/dragAndDrop/styles.css';

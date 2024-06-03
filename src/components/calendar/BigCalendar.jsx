@@ -129,9 +129,3 @@ const BigCalendar = () => {
 };
 
 export default BigCalendar;
-// 리사이즈를 할 때는 모달창이 나오지 않게 할 것
-// css로 가려 놓은 today 버튼 라이브러리에서 없애기
-// agenda 버튼도 없애기
-// 당일 일정의 스타일 바꾸는 방법 찾아보기
-// 당일의 기준: day가 같아야 하고, duration이 24시간 이내여야 한다.
-// '당일의 기준'에 알맞은 경우, rbc-row-segment에 'one-day-event'라고 className을 추가한다.

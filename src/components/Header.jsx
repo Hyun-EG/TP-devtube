@@ -1,5 +1,5 @@
-import Logo from '../assets/header_logo.png';
-import Create from '../assets/VideoCall.png';
+import Logo from '../assets/header_logo.svg';
+import Create from '../assets/videocall.svg';
 
 function Header() {
 	return (

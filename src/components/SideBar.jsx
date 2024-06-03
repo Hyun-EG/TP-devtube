@@ -1,9 +1,9 @@
-import ProfileImg from '../assets/profile_img.png';
-import Dashboard from '../assets/dashboard.png';
-import Earnings from '../assets/earning.png';
-import Requests from '../assets/requests.png';
-import Calendar from '../assets/calendar.png';
-import Logout from '../assets/Logout.png';
+import ProfileImg from '../assets/profile_img.svg';
+import Dashboard from '../assets/dashboard.svg';
+import Earnings from '../assets/earnings.svg';
+import Requests from '../assets/requests.svg';
+import Calendar from '../assets/calendar.svg';
+import Logout from '../assets/Logout.svg';
 
 function Sidebar() {
 	return (

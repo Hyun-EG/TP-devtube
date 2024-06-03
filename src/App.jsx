@@ -14,8 +14,8 @@ function App() {
 			<Sidebar />
 			<Provider store={store}> {/* Redux 스토어를 Provider에 전달 */}
 				<div className="App">
-					{/* <BigCalendar /> */}
-					<BigCalendarWeek />
+					<BigCalendar />
+					{/* <BigCalendarWeek /> */}
 				</div>
 			</Provider>
 		</>

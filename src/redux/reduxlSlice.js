@@ -5,14 +5,16 @@ const initialState = {
 	selectedEarning: null,
 	currentPage: 1,
 	earnings: [
-		{ id: 1, date: '2024.05.30', type: '조회수', amount: 300000 },
+		{ id: 1, date: '2024.05.30', type: '조회수', amount: 500000 },
 		{ id: 2, date: '2024.05.30', type: '멤버십', amount: 50000 },
-		{ id: 3, date: '2024.05.30', type: '광고', amount: 750000 },
-		{ id: 4, date: '2024.05.30', type: '광고', amount: 750000 },
-		{ id: 5, date: '2024.05.30', type: '광고', amount: 750000 },
+		{ id: 3, date: '2024.05.30', type: '광고', amount: 200000 },
+		{ id: 4, date: '2024.05.30', type: '광고', amount: 200000 },
+		{ id: 5, date: '2024.05.30', type: '광고', amount: 200000 },
 		{ id: 6, date: '2024.05.30', type: '슈퍼챗', amount: 5000 },
 		{ id: 7, date: '2024.05.30', type: '슈퍼챗', amount: 5000 },
-		{ id: 8, date: '2024.05.30', type: '슈퍼챗', amount: 10000 }
+		{ id: 8, date: '2024.05.30', type: '슈퍼챗', amount: 10000 },
+		{ id: 9, date: '2024.05.30', type: '슈퍼챗', amount: 8000 },
+		{ id: 10, date: '2024.05.30', type: '슈퍼챗', amount: 12000 }
 	]
 };
 

@@ -9,7 +9,8 @@ import {
 	doc,
 	updateDoc,
 	deleteDoc,
-	getDocs
+	getDocs,
+	Timestamp
 } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,3 +27,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const appAuth = getAuth();
+const appFirestore = getFirestore();
+const timestamp = Timestamp;
+
+export { appAuth, appFirestore, timestamp }

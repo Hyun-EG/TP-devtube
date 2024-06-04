@@ -28,10 +28,10 @@ export const useFirestore = (transaction) => {
 
   const [response, dispatch] = useReducer(storeReducer, initState)
 
-  // colRef : 컬렉션의 참조를 요구합니다.
+  // colRef: 컬렉션의 참조 요구
   const colRef = collection(appFirestore, transaction);
 
-  // 컬렉션에 문서를 추가합니다.
+  // 컬렉션에 문서 추가
   const addDocument = async (doc) => {
     dispatch({ type: "isPending" });
 
@@ -42,9 +42,9 @@ export const useFirestore = (transaction) => {
     } catch (error) {
       dispatch({ type: "error", payload: error.message });
     }
-  } // await 함수이기 때문에 앞에 async를 붙임
+  }
 
-  // 컬렉션에 문서를 제거합니다.
+  // 컬렉션에 문서 제거
   const deleteDocument = async (id) => {
     dispatch({ type: "isPending" });
 

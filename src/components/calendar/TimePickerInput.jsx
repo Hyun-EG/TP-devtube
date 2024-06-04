@@ -3,7 +3,8 @@ import ReactDatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
 import styled from 'styled-components';
-import './css/csstest.css';
+// import './css/csstest.css';
+import '../../styles/components/calendar/_bigCalendar.scss';
 
 // 한국어 로케일 등록
 registerLocale('ko', ko);

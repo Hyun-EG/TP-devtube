@@ -8,7 +8,8 @@ import 'dayjs/locale/ko';
 // ▼ drag and drop 관련 CSS(없으면 dragAndDrop도 resize도 잘 안 됩니다.)
 import './css/dragAndDrop/styles.css';
 // ▼ 달력, 주력 스타일 교체용 css 파일입니다. 이 파일을 scss 형식으로 고쳐야 합니다. 일부분은 figma 디자인에 따라 수정하고, // 표시를 붙였습니다.
-import './css/csstest.css';
+// import './css/csstest.css';
+import '../../styles/components/calendar/_bigCalendar.scss';
 // ▼ 번역어 정리
 import { messages, formats } from './KoreanLang';
 

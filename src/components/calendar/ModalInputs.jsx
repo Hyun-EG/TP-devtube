@@ -20,14 +20,14 @@ const Input = styled.input`
 	padding: 0.5rem;
 	font-size: 1rem;
 	border-radius: 4px;
-	border: ${props => (props.error ? '1px solid red' : '1px solid #ccc')};
+	border: ${props => (props.error ? '1px solid #cc0000' : '1px solid #ccc')};
 `;
 
 const TextArea = styled.textarea`
 	padding: 0.5rem;
 	font-size: 1rem;
 	border-radius: 4px;
-	border: ${props => (props.error ? '1px solid red' : '1px solid #ccc')};
+	border: ${props => (props.error ? '1px solid #cc0000' : '1px solid #ccc')};
 `;
 
 const ErrorMessage = styled.div`

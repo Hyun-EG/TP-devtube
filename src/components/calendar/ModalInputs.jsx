@@ -32,17 +32,25 @@ const ModalInputs = ({ label, type, value, onChange, required, error, errorMessa
   <FormField>
     <Label>{label}</Label>
     {type === 'textarea' && (
-      <TextArea value={value} onChange={onChange} required={required} error={error} />
+      <TextArea
+        value={value}
+        onChange={onChange}
+        required={required}
+        error={error ? "true" : undefined} />
     )}
     {type === 'text' && (
-      <Input type={type} value={value} onChange={onChange} required={required} error={error} />
+      <Input type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        error={error ? "true" : undefined} />
     )}
     {type === 'date' && (
       <TimePickerInput
         selectedDate={value}
         onChange={onChange}
         placeholder={label}
-        error={error}
+        error={error ? "true" : undefined}
       />
     )}
     {error && <ErrorMessage>{errorMessage}</ErrorMessage>}

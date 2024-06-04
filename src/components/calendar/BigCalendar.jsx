@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { fetchEvents, addEvent, updateEvent, deleteEvent } from './Redux/eventsSlice';
 import CalendarChild from './CalendarChild';
 import EventModal from './EventModal';
@@ -7,8 +7,10 @@ import dayjs from 'dayjs';
 
 const BigCalendar = () => {
   const dispatch = useDispatch();
-  const events = useSelector((state) => state.events.items);
-  const status = useSelector((state) => state.events.status);
+  // const events = useSelector((state) => state.events.items, shallowEqual);
+  const events = useSelector((state) => state.events.items || [], shallowEqual);
+  const status = useSelector((state) => state.events.status || 'idle', shallowEqual);
+
   // 이벤트 존재 여부 판단
   const [selectedEvent, setSelectedEvent] = useState(null);
   // 모달창 여닫기 상태 관리
@@ -20,7 +22,20 @@ const BigCalendar = () => {
     if (status === 'idle') {
       dispatch(fetchEvents());
     }
-  }, [status, dispatch]);
+  }, [dispatch, status]);
+  // 디버깅용 콘솔
+  useEffect(() => {
+    console.log('Events state:', events);
+  }, [events]);
+
+  useEffect(() => {
+    console.log('Status:', status);  // 디버깅용 콘솔 로그
+  }, [status]);
+
+  useEffect(() => {
+    console.log('dispatch(fetchEvents())', dispatch(fetchEvents()))
+  }, [dispatch]);
+  // 디버깅용 콘솔
 
   // drag, resize를 할 때 일정을 업데이트한다.
   const handleEventUpdate = useCallback(({ event, start, end }) => {

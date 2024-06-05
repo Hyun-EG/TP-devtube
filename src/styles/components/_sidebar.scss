@@ -34,7 +34,13 @@
 		&__list {
 			@include flex(start, center);
 			height: 50px;
+			width: 100%;
 			cursor: pointer;
+
+			&:hover {
+				background-color: #f2f2f2;
+				border-left: 2px solid #282828;
+			}
 
 			img {
 				margin-left: 20px;

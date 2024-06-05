@@ -22,6 +22,7 @@ function App() {
 					<Route path="/findid" element={<FindId />} />
 					<Route path="/findPassword" element={<FindPassword />} />
 					<Route path="/calendar" element={<Calendar />} />
+					<Route path="/earnings" element={<EarningsPage />} />
 				</Routes>
 			</Router>
 		</>

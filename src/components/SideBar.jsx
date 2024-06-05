@@ -41,7 +41,7 @@ function Sidebar() {
 					<img src={Dashboard} alt="Dashboard" />
 					<span>Dashboard</span>
 				</div>
-				<div className="menu__list">
+				<div className="menu__list" onClick={() => navigate('/earnings')}>
 					<img src={Earnings} alt="Earnings" />
 					<span>Earnings</span>
 				</div>

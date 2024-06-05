@@ -28,7 +28,7 @@ function Sidebar() {
 
 	return (
 		<div className="sidebar">
-			<div className="profile" onClick={() => navigate('/home')}>
+			<div className="profile">
 				<img className="profile__img" src={ProfileImg} alt="ProfileImg" />
 				<span className="profile__channel">
 					{user?.channelName || 'Channel name'}
@@ -37,7 +37,7 @@ function Sidebar() {
 			</div>
 
 			<div className="menu">
-				<div className="menu__list">
+				<div className="menu__list" onClick={() => navigate('/home')}>
 					<img src={Dashboard} alt="Dashboard" />
 					<span>Dashboard</span>
 				</div>

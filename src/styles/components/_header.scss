@@ -1,7 +1,12 @@
 header {
 	height: 60px;
+	width: 100%;
+	position: fixed;
+	top: 0;
 	display: flex;
+	background-color: #ffffff;
 	border-bottom: 1px solid #e6e6e6;
+	z-index: 10;
 
 	.logo {
 		padding: 20px;

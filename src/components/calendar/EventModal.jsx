@@ -1,39 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import '../../styles/components/calendar/_eventModal.scss';
 import ModalInputs from './ModalInputs';
 import Buttons from './Buttons';
-
-const ModalOverlay = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 1000;
-`;
-
-const ModalContent = styled.div`
-	background: white;
-	border-radius: 8px;
-	padding: 20px;
-	width: 450px;
-	max-width: 90%;
-`;
-
-const ModalHeader = styled.h2`
-	margin-top: 0;
-	margin-bottom: 24px;
-	text-align: center;
-`;
-
-const Form = styled.form`
-	display: flex;
-	flex-direction: column;
-`;
 
 const EventModal = ({
 	isOpen,
@@ -96,10 +64,10 @@ const EventModal = ({
 	if (!isOpen) return null;
 
 	return (
-		<ModalOverlay onClick={onRequestClose}>
-			<ModalContent onClick={e => e.stopPropagation()}>
-				<ModalHeader>{headerTitle}</ModalHeader>
-				<Form onSubmit={handleSubmit}>
+		<div className="modal-overlay" onClick={onRequestClose}>
+			<div className="modal-content" onClick={e => e.stopPropagation()}>
+				<h2 className="modal-header">{headerTitle}</h2>
+				<form className="form" onSubmit={handleSubmit}>
 					<ModalInputs
 						label="제목"
 						type="text"
@@ -139,9 +107,9 @@ const EventModal = ({
 						onDelete={handleDelete}
 						showDelete={!!event}
 					/>
-				</Form>
-			</ModalContent>
-		</ModalOverlay>
+				</form>
+			</div>
+		</div>
 	);
 };
 

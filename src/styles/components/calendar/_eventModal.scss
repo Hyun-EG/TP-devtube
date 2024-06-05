@@ -1,0 +1,99 @@
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.modal-content {
+	background: white;
+	border-radius: 8px;
+	padding: 20px;
+	width: 450px;
+	max-width: 90%;
+}
+
+.modal-header {
+	margin-top: 0;
+	margin-bottom: 24px;
+	text-align: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.button-group-container {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.button {
+	width: 110.5px;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+
+	&.save {
+		background-color: #065fd4;
+		color: white;
+	}
+
+	&.cancel {
+		background-color: #fafafa;
+		border: 1px solid #d9d9d9;
+		color: #6d6f71;
+	}
+
+	&.delete {
+		background-color: #faf2f2;
+		border: 1px solid #ff6666;
+		color: #ff6666;
+	}
+}
+
+.form-field {
+	margin-bottom: 1rem;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.label {
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+}
+
+.input,
+.textarea,
+.timepicker {
+	padding: 0.5rem;
+	font-size: 1rem;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.input.error,
+.textarea.error,
+.timepicker.error {
+	border: 1px solid #cc0000;
+}
+
+.error-message {
+	color: #cc0000;
+	font-size: 0.875rem;
+}

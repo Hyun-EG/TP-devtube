@@ -1,39 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import TimePickerInput from './TimePickerInput';
-
-const FormField = styled.div`
-	margin-bottom: 1rem;
-`;
-
-const InputContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-`;
-
-const Label = styled.label`
-	margin-bottom: 0.5rem;
-	font-weight: 500;
-`;
-
-const Input = styled.input`
-	padding: 0.5rem;
-	font-size: 1rem;
-	border-radius: 4px;
-	border: ${props => (props.error ? '1px solid #cc0000' : '1px solid #ccc')};
-`;
-
-const TextArea = styled.textarea`
-	padding: 0.5rem;
-	font-size: 1rem;
-	border-radius: 4px;
-	border: ${props => (props.error ? '1px solid #cc0000' : '1px solid #ccc')};
-`;
-
-const ErrorMessage = styled.div`
-	color: #cc0000;
-	font-size: 0.875rem;
-`;
+import '../../styles/components/calendar/_eventModal.scss';
 
 const ModalInputs = ({
 	label,
@@ -44,24 +11,24 @@ const ModalInputs = ({
 	error,
 	errorMessage
 }) => (
-	<FormField>
-		<Label>{label}</Label>
-		<InputContainer>
+	<div className="form-field">
+		<label className="label">{label}</label>
+		<div className="input-container">
 			{type === 'textarea' && (
-				<TextArea
+				<textarea
+					className={`textarea ${error ? 'error' : ''}`}
 					value={value}
 					onChange={onChange}
 					required={required}
-					error={error}
 				/>
 			)}
 			{type === 'text' && (
-				<Input
+				<input
+					className={`input ${error ? 'error' : ''}`}
 					type={type}
 					value={value}
 					onChange={onChange}
 					required={required}
-					error={error}
 				/>
 			)}
 			{type === 'date' && (
@@ -72,9 +39,9 @@ const ModalInputs = ({
 					error={error}
 				/>
 			)}
-			{error && <ErrorMessage>{errorMessage}</ErrorMessage>}
-		</InputContainer>
-	</FormField>
+			{error && <div className="error-message">{errorMessage}</div>}
+		</div>
+	</div>
 );
 
 export default ModalInputs;

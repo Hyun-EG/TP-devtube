@@ -3,48 +3,73 @@ import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase
 import { db } from '../../../firebase/config';
 
 // 파이어베이스에서 데이터 가져오기
+// 이메일 정보를 가져오기
+// 아이디(이메일)을 바탕으로 일정 가져오기
+
+// 파이어베이스의 users 문서 이름과 아이디가 일치하는 게 있는지 확인한다.
+// 일치하는 id의 문서에 my-schedulse 콜렉션 crud를 넣는다.
+
+// 로컬 스토리지의 userData에서 아이디만 가져온다.
+const LocalStorageUserData = () => {
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  return userData ? userData.id : null;
+};
+
+// users 콜렉션 > users의 문서 이름(즉, userData.id) > my-schedules 콜렉션 > 문서 이름
 export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
-  try {
-    const eventsCollection = collection(db, 'my-schedules');
-    const eventsSnapshot = await getDocs(eventsCollection);
-    return eventsSnapshot.docs.map(doc => {
-      const data = doc.data();
-      // Firebase에서 가져온 문자열을 그대로 사용하기
-      return { id: doc.id, ...data, start: data.start, end: data.end };
-    });
-  } catch (error) {
-    console.error("에러 발생", error);
-    throw error;
+
+  const userId = LocalStorageUserData();
+  if (!userId) {
+    throw new Error('로그인 사용자 없음.');
   }
+
+  const eventsCollection = collection(db, `users/${userId}/my-schedules`);
+  const eventsSnapshot = await getDocs(eventsCollection);
+  return eventsSnapshot.docs.map(doc => {
+    const data = doc.data();
+    return { id: doc.id, ...data, start: data.start, end: data.end };
+  });
 });
 
-// 데이터 추가
 export const addEvent = createAsyncThunk('events/addEvent', async (event) => {
+  const userId = LocalStorageUserData();
+  if (!userId) {
+    throw new Error('로그인 사용자 없음.');
+  }
+
   const newEvent = {
     ...event,
     start: event.start,
     end: event.end,
     note: event.note || ''
   };
-  const docRef = await addDoc(collection(db, 'my-schedules'), newEvent);
+  const docRef = await addDoc(collection(db, `users/${userId}/my-schedules`), newEvent);
   return { ...newEvent, id: docRef.id };
 });
 
-// 업데이트
 export const updateEvent = createAsyncThunk('events/updateEvent', async (event) => {
+  const userId = LocalStorageUserData();
+  if (!userId) {
+    throw new Error('로그인된 사용자가 없습니다.');
+  }
+
   const updatedEvent = {
     ...event,
     start: event.start,
     end: event.end,
     note: event.note || ''
   };
-  await updateDoc(doc(db, 'my-schedules', event.id), updatedEvent);
+  await updateDoc(doc(db, `users/${userId}/my-schedules`, event.id), updatedEvent);
   return updatedEvent;
 });
 
-// 삭제
 export const deleteEvent = createAsyncThunk('events/deleteEvent', async (id) => {
-  await deleteDoc(doc(db, 'my-schedules', id));
+  const userId = LocalStorageUserData();
+  if (!userId) {
+    throw new Error('로그인된 사용자가 없습니다.');
+  }
+
+  await deleteDoc(doc(db, `users/${userId}/my-schedules`, id));
   return id;
 });
 

@@ -1,0 +1,218 @@
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import YouTube from 'react-youtube';
+import { db } from '../firebase/config';
+import Header from '../components/Header';
+import Sidebar from '../components/SideBar';
+import { useSelector, useDispatch } from 'react-redux';
+import { EditUserProfile } from '../components/EditUserProfile';
+import { fetchEvents } from '../redux/eventsSlice';
+
+const getWeekDates = (date, weekOffset = 0) => {
+	const currentDate = new Date(date);
+	currentDate.setDate(currentDate.getDate() + weekOffset * 7);
+	const day = currentDate.getDay();
+	const diff = currentDate.getDate() - day + (day === 0 ? -6 : 1);
+	const startOfWeek = new Date(currentDate.setDate(diff));
+	const dates = Array.from({ length: 7 }).map((_, i) => {
+		const d = new Date(startOfWeek);
+		d.setDate(d.getDate() + i);
+		return d;
+	});
+	return dates;
+};
+
+export const Home = () => {
+	const [userData, setUserData] = useState(null);
+	const [weekOffset, setWeekOffset] = useState(0);
+	const [weekDates, setWeekDates] = useState(getWeekDates(new Date(), 0));
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const location = useLocation();
+	const user = useSelector(state => state.auth.user);
+	const dispatch = useDispatch();
+	const { events } = useSelector(state => state.events);
+
+	useEffect(() => {
+		const getUserData = async () => {
+			if (user) {
+				const userEmail = user.email;
+				try {
+					const q = query(
+						collection(db, 'users'),
+						where('email', '==', userEmail)
+					);
+					const querySnapshot = await getDocs(q);
+					querySnapshot.forEach(doc => {
+						setUserData({ id: doc.id, ...doc.data() });
+						localStorage.setItem(
+							'userData',
+							JSON.stringify({ id: doc.id, ...doc.data() })
+						);
+					});
+				} catch (error) {
+					console.error('Error getting user document:', error);
+				}
+			}
+		};
+		getUserData();
+		dispatch(fetchEvents());
+	}, [user, dispatch]);
+
+	useEffect(() => {
+		const cachedUserData = localStorage.getItem('userData');
+		if (cachedUserData) {
+			setUserData(JSON.parse(cachedUserData));
+		}
+		setWeekDates(getWeekDates(new Date(), weekOffset));
+	}, [weekOffset]);
+
+	const handlePrevWeek = () => {
+		setWeekOffset(prev => prev - 1);
+	};
+
+	const handleNextWeek = () => {
+		setWeekOffset(prev => prev + 1);
+	};
+
+	const opts = {
+		height: '240',
+		width: '496',
+		playerVars: {
+			autoplay: 0
+		}
+	};
+
+	const isToday = date => {
+		const today = new Date();
+		return (
+			date.getDate() === today.getDate() &&
+			date.getMonth() === today.getMonth() &&
+			date.getFullYear() === today.getFullYear()
+		);
+	};
+
+	return (
+		<>
+			<Header />
+			<Sidebar />
+			{isModalOpen && (
+				<EditUserProfile
+					onClose={() => setIsModalOpen(false)}
+					userData={userData}
+				/>
+			)}
+			<div className="home">
+				<div className="header">
+					<span className="board-title">대시보드</span>
+				</div>
+				<div className="board-wrapper">
+					<div className="first-line">
+						<div className="impormation-channel-area">
+							<div className="__content-title">
+								<span>채널 정보</span>
+								<button
+									className="edit-btn"
+									onClick={() => setIsModalOpen(true)}>
+									수정
+								</button>
+							</div>
+							{userData && (
+								<>
+									<div className="__content">
+										<span>크리에이터 이름</span>
+										<span>{userData.name}</span>
+									</div>
+									<div className="__content">
+										<span>채널 이름</span>
+										<span>{userData.channelName}</span>
+									</div>
+									<div className="__content">
+										<span>이메일</span>
+										<span>{userData.email}</span>
+									</div>
+									<div className="__content">
+										<span>구독자 수</span>
+										<span>10,000명</span>
+									</div>
+									<div className="__content">
+										<span>조회수</span>
+										<span>365만</span>
+									</div>
+								</>
+							)}
+						</div>
+						<div className="shorts-area">
+							<div className="__content-title">
+								<span>최신영상</span>
+							</div>
+							<div className="video">
+								<YouTube
+									videoId="ymtDGOp13ns?si=2N7NC7bN1Moy8H0j"
+									opts={opts}
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="schedule-area">
+						<div className="__title">
+							<span>이번 주의 스케줄</span>
+							<div>
+								<button className="__btn" onClick={handlePrevWeek}>
+									◁
+								</button>
+								<button className="__btn" onClick={handleNextWeek}>
+									▷
+								</button>
+							</div>
+						</div>
+						<div className="schedule">
+							<table>
+								<thead>
+									<tr>
+										{weekDates.map((date, index) => (
+											<th key={index} className={isToday(date) ? 'today' : ''}>
+												<div className="date">
+													{date.toLocaleDateString('en-US', {
+														weekday: 'short'
+													})}{' '}
+													{date.toLocaleDateString('en-US', {
+														month: 'numeric',
+														day: 'numeric'
+													})}
+												</div>
+											</th>
+										))}
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										{weekDates.map((date, index) => (
+											<td key={index}>
+												{events
+													.filter(event => {
+														const startDate = new Date(event.start);
+														const endDate = new Date(event.end);
+														return startDate <= date && date <= endDate;
+													})
+													.map(event => (
+														<div key={event.id}>
+															{event.title.length > 5
+																? `${event.title.slice(0, 5)}...`
+																: event.title}
+														</div>
+													))}
+											</td>
+										))}
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
+};
+
+export default Home;

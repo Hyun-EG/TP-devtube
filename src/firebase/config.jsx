@@ -15,7 +15,7 @@ import {
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+export const firebaseConfig = {
 	apiKey: 'AIzaSyBlO0XXeM-v_YEfxxGG5KL7AuKXUTAd3b4',
 	authDomain: 'devtube-46156.firebaseapp.com',
 	projectId: 'devtube-46156',
@@ -26,6 +26,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
-export { db }
+
+export { db };

@@ -1,13 +1,13 @@
 .sidebar {
 	width: 250px;
-	height: 93.5vh;
+	height: 100vh;
 	border-right: 1px solid #e6e6e6;
 	position: fixed;
 	display: flex;
 	flex-direction: column;
 
 	.profile {
-		margin-top: 45px;
+		margin-top: 100px;
 		height: 152px;
 		@include column-flex(start, start);
 

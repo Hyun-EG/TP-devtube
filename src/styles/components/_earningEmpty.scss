@@ -1,0 +1,21 @@
+.earnings {
+	&__empty {
+		margin-top: 3.13vh;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		@include column-flex(center, center);
+
+		&_bigFont {
+			margin-top: 3.13vh;
+			font-size: 1.11vw;
+			color: #6d6f71;
+		}
+
+		&_smallFont {
+			font-size: 0.97vw;
+			color: #065fd4;
+			margin-top: 0.7vh;
+		}
+	}
+}

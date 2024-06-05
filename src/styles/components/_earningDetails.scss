@@ -1,0 +1,23 @@
+.earning_detail {
+	padding: 0.39vh 0;
+	height: 4.3vh;
+
+	&_grid {
+		display: grid;
+		grid-template-columns: 4fr 4fr 5.5fr 3fr;
+
+		&_content {
+			font-size: 1.56vh;
+
+			&_check {
+				font-size: 1.37vh;
+				color: #065fd4;
+				cursor: pointer;
+			}
+
+			&_amount {
+				font-size: 1.56vh;
+			}
+		}
+	}
+}

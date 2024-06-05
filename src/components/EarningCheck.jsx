@@ -3,7 +3,7 @@ import ArrowLeft from '../assets/arrow_left.png';
 import ArrowRight from '../assets/arrow_right.png';
 import EarningType from './EarningType';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentPage } from '../redux/reduxlSlice';
+import { setCurrentPage } from '../redux/earningPage/reduxlSlice';
 
 function EarningCheck({}) {
 	const earnings = useSelector(state => state.earnings.earnings);

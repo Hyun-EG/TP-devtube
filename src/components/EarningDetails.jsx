@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { openModal } from '../redux/reduxlSlice';
+import { openModal } from '../redux/earningPage/reduxlSlice';
 
 function EarningDetails({ earning }) {
 	const dispatch = useDispatch();

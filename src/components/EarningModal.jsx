@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from '../redux/reduxlSlice';
+import { closeModal } from '../redux/earningPage/reduxlSlice';
 
 function EarningModal({ isOpen }) {
 	const dispatch = useDispatch();

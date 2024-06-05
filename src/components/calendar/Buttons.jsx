@@ -20,14 +20,16 @@ const Button = styled.button`
 		color: white;
 	}
 
-	/* &.cancel {
-    background-color: #D9D9D9;
-  } */
-
-	&.delete {
+	&.cancel {
 		background-color: #fafafa;
 		border: 1px solid #d9d9d9;
 		color: #6d6f71;
+	}
+
+	&.delete {
+		background-color: #faf2f2;
+		border: 1px solid #ff6666;
+		color: #ff6666;
 	}
 `;
 
@@ -36,9 +38,9 @@ const Buttons = ({ onSave, onCancel, onDelete, showDelete }) => (
 		<Button className="save" type="button" onClick={onSave}>
 			저장
 		</Button>
-		{/* <Button className="cancel" type="button" onClick={onCancel}>
-      작성 취소
-    </Button> */}
+		<Button className="cancel" type="button" onClick={onCancel}>
+			취소
+		</Button>
 		{showDelete && (
 			<Button className="delete" type="button" onClick={onDelete}>
 				삭제

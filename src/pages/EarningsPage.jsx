@@ -3,6 +3,10 @@ import EarningCheck from '../components/EarningCheck';
 import EarningGraph from '../components/EarningGraph';
 import EarningModal from '../components/EarningModal';
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
+import Header from '../components/Header';
+import Sidebar from '../components/SideBar';
 
 function EarningsPage() {
 	const isModalOpen = useSelector(state => state.earnings.isModalOpen);
@@ -19,14 +23,16 @@ function EarningsPage() {
 	}, [isModalOpen]);
 
 	return (
-		<>
+		<Provider store={store}>
+			<Header />
+			<Sidebar />
 			<div className="earnings">
 				<div className="earnings__title">수익 내역</div>
 				<EarningGraph />
 				<EarningCheck />
 				<EarningModal isOpen={isModalOpen} />
 			</div>
-		</>
+		</Provider>
 	);
 }
 

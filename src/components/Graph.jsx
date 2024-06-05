@@ -3,20 +3,20 @@ import { ResponsiveLine } from '@nivo/line';
 
 const defaultData = [
 	{
-		id: 'japan',
+		id: '수익',
 		color: 'hsl(127, 70%, 50%)',
 		data: [
 			{
 				x: '1월',
-				y: 291
+				y: 230
 			},
 			{
 				x: '2월',
-				y: 117
+				y: 170
 			},
 			{
 				x: '3월',
-				y: 73
+				y: 90
 			},
 			{
 				x: '4월',
@@ -28,7 +28,7 @@ const defaultData = [
 			},
 			{
 				x: '6월',
-				y: 190
+				y: 119
 			},
 			{
 				x: '7월',
@@ -57,7 +57,7 @@ const defaultData = [
 		]
 	},
 	{
-		id: 'france',
+		id: '조회수',
 		color: 'hsl(132, 70%, 50%)',
 		data: [
 			{
@@ -82,7 +82,7 @@ const defaultData = [
 			},
 			{
 				x: '6월',
-				y: 170
+				y: 365
 			},
 			{
 				x: '7월',
@@ -122,7 +122,7 @@ const Graph = ({ data = defaultData }) => {
 				type: 'linear',
 				min: 'auto',
 				max: 'auto',
-				stacked: true,
+				stacked: false,
 				reverse: false
 			}}
 			yFormat=" >-.2f"

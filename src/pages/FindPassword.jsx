@@ -35,7 +35,7 @@ export function FindPassword() {
 	};
 
 	const handleLoginClick = () => {
-		navigate('/login');
+		navigate('/');
 	};
 
 	return (

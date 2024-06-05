@@ -33,7 +33,7 @@ export function FindId() {
 	};
 
 	const handleLoginClick = () => {
-		navigate('/login');
+		navigate('/');
 	};
 
 	return (

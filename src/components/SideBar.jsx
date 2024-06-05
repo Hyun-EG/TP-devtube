@@ -23,7 +23,7 @@ function Sidebar() {
 
 	const handleLogoutClick = () => {
 		dispatch(logout());
-		navigate('/login');
+		navigate('/');
 	};
 
 	return (

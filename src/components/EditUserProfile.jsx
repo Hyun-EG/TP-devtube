@@ -12,19 +12,16 @@ export function EditUserProfile({ onClose, userData }) {
 	const loading = useSelector(state => state.auth.loading);
 
 	const handleUpdate = () => {
-		// 비밀번호 길이가 8자 이상이어야 함
 		if (password.length < 8) {
 			alert('비밀번호는 최소 8자 이상이어야 합니다.');
 			return;
 		}
 
-		// 비밀번호와 비밀번호 확인이 일치하는지 확인
 		if (password !== confirmPassword) {
 			alert('비밀번호가 일치하지 않습니다.');
 			return;
 		}
 
-		// 이름에 특수문자가 포함되었는지 확인
 		if (!/^[가-힣a-zA-Z\s]+$/.test(name)) {
 			alert('올바른 이름을 입력하세요.');
 			return;
@@ -35,7 +32,6 @@ export function EditUserProfile({ onClose, userData }) {
 			return;
 		}
 
-		// 수정할 사용자 데이터
 		const updatedData = { name, channelName, email, password };
 
 		dispatch(updateUser(userData.id, updatedData));

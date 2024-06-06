@@ -15,7 +15,7 @@ export function EditPassword({ userDocId, setShowEditPassword }) {
 			const userDoc = doc(db, 'users', userDocId);
 			await updateDoc(userDoc, { password });
 			alert('비밀번호가 성공적으로 변경되었습니다.');
-			setShowEditPassword(false); // 모달 창 닫기
+			setShowEditPassword(false); 
 		} catch (error) {
 			console.error('비밀번호 업데이트 오류:', error);
 			alert('비밀번호를 변경하는 중 오류가 발생했습니다. 다시 시도해주세요.');

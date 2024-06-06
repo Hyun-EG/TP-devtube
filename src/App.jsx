@@ -1,14 +1,15 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/SideBar';
-import EarningsPage from './pages/EarningsPage';
 import { Provider } from 'react-redux';
 import { Login } from './pages/Login';
 import { SignUp } from './pages/SignUp';
 import { Home } from './pages/Home';
-import { FindPassword } from './pages/FindPassword';
 import { FindId } from './pages/FindId';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { FindPassword } from './pages/FindPassword';
 import Calendar from './pages/Calendar';
+import EarningsPage from './pages/EarningsPage';
+import Requests from './pages/Requests';
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 					<Route path="/findPassword" element={<FindPassword />} />
 					<Route path="/calendar" element={<Calendar />} />
 					<Route path="/earnings" element={<EarningsPage />} />
+					<Route path="/requests" element={<Requests />} />
 				</Routes>
 			</Router>
 		</>

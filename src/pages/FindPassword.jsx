@@ -24,9 +24,9 @@ export function FindPassword() {
 			const querySnapshot = await getDocs(q);
 			if (!querySnapshot.empty) {
 				querySnapshot.forEach(doc => {
-					setUserDocId(doc.id); // 문서 ID를 저장
+					setUserDocId(doc.id);
 				});
-				setShowEditPassword(true); // 모달 창을 표시
+				setShowEditPassword(true);
 			} else {
 				alert('해당 정보로 등록된 계정이 없습니다.');
 			}

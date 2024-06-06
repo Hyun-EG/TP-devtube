@@ -31,7 +31,7 @@ export const Home = () => {
 	const location = useLocation();
 	const user = useSelector(state => state.auth.user);
 	const dispatch = useDispatch();
-	const { events } = useSelector(state => state.events);
+	const [events, setEvents] = useState([]);
 
 	useEffect(() => {
 		const getUserData = async () => {
@@ -66,6 +66,25 @@ export const Home = () => {
 		}
 		setWeekDates(getWeekDates(new Date(), weekOffset));
 	}, [weekOffset]);
+
+	useEffect(() => {
+		const fetchUserEvents = async () => {
+			if (userData) {
+				try {
+					const q = collection(db, 'users', userData.id, 'my-schedules');
+					const querySnapshot = await getDocs(q);
+					const eventsData = [];
+					querySnapshot.forEach(doc => {
+						eventsData.push({ id: doc.id, ...doc.data() });
+					});
+					setEvents(eventsData);
+				} catch (error) {
+					console.error('Error fetching events:', error);
+				}
+			}
+		};
+		fetchUserEvents();
+	}, [userData]);
 
 	const handlePrevWeek = () => {
 		setWeekOffset(prev => prev - 1);
@@ -173,10 +192,10 @@ export const Home = () => {
 										{weekDates.map((date, index) => (
 											<th key={index} className={isToday(date) ? 'today' : ''}>
 												<div className="date">
-													{date.toLocaleDateString('en-US', {
+													{date.toLocaleDateString('ko-KR', {
 														weekday: 'short'
 													})}{' '}
-													{date.toLocaleDateString('en-US', {
+													{date.toLocaleDateString('ko-KR', {
 														month: 'numeric',
 														day: 'numeric'
 													})}
@@ -198,7 +217,7 @@ export const Home = () => {
 													.map(event => (
 														<div key={event.id}>
 															{event.title.length > 5
-																? `${event.title.slice(0, 5)}...`
+																? `${event.title.slice(0, 7)}...`
 																: event.title}
 														</div>
 													))}

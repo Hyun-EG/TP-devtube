@@ -3,11 +3,14 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import logo from '../assets/header_logo.png';
 import { useNavigate } from 'react-router-dom';
+import { EditPassword } from '../components/EditPassword';
 
 export function FindPassword() {
 	const [name, setName] = useState('');
 	const [channelName, setChannelName] = useState('');
 	const [email, setEmail] = useState('');
+	const [showEditPassword, setShowEditPassword] = useState(false);
+	const [userDocId, setUserDocId] = useState(null);
 	const navigate = useNavigate();
 
 	const handleFindPassword = async () => {
@@ -21,15 +24,14 @@ export function FindPassword() {
 			const querySnapshot = await getDocs(q);
 			if (!querySnapshot.empty) {
 				querySnapshot.forEach(doc => {
-					const userData = doc.data();
-					const foundPassword = userData.password;
-					alert(`찾으시는 비밀번호는 "${foundPassword}" 입니다.`);
+					setUserDocId(doc.id); // 문서 ID를 저장
 				});
+				setShowEditPassword(true); // 모달 창을 표시
 			} else {
-				alert('해당 정보로 등록된 비밀번호가 없습니다.');
+				alert('해당 정보로 등록된 계정이 없습니다.');
 			}
 		} catch (error) {
-			console.error('Error finding password:', error);
+			console.error('비밀번호 찾기 오류:', error);
 			alert('비밀번호를 찾는 중 오류가 발생했습니다. 다시 시도해주세요.');
 		}
 	};
@@ -40,6 +42,12 @@ export function FindPassword() {
 
 	return (
 		<>
+			{showEditPassword && (
+				<EditPassword
+					userDocId={userDocId}
+					setShowEditPassword={setShowEditPassword}
+				/>
+			)}
 			<div className="find-password">
 				<div className="wrapper">
 					<div className="header">
@@ -72,7 +80,6 @@ export function FindPassword() {
 							onChange={e => setEmail(e.target.value)}
 						/>
 					</div>
-
 					<div className="footer">
 						<span className="password-login-btn" onClick={handleLoginClick}>
 							로그인

@@ -4,7 +4,7 @@
 
 .home {
 	height: 93.5vh;
-	margin-left: 250px;
+	margin-left: 33vh;
 
 	@include column-flex(start, start);
 
@@ -106,6 +106,7 @@
 					td {
 						border: 1px solid #d9d9d9;
 						padding: 10px;
+
 						white-space: nowrap;
 						width: 165px;
 						height: 37px;

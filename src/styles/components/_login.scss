@@ -9,23 +9,23 @@
 	@include flex;
 
 	.wrapper {
-		width: 432px;
-		height: 419px;
+		width: 62vh;
+		height: 59.5vh;
 		border-radius: 8px;
 		background: #ffffff;
 		.header {
-			margin: 20px;
+			margin: 3vh;
 			@include flex;
 		}
 	}
 }
 
 .login-content {
-	margin-bottom: 10px;
+	margin-bottom: 1.5vh;
 	@include column-flex;
 
 	.sign-in {
-		font-size: 18px;
+		font-size: 2.8vh;
 	}
 }
 

@@ -93,7 +93,6 @@ const BigCalendar = () => {
 	}));
 
 	// className customize
-	// className customize
 	const eventPropGetter = useCallback(
 		(event, start, end, isSelected) => {
 			const classNames = [];

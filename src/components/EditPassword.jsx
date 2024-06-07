@@ -15,6 +15,16 @@ export function EditPassword({ userDocId, setShowEditPassword }) {
 			alert('비밀번호가 일치하지 않습니다.');
 			return;
 		}
+		// Check if the password meets the requirements
+		if (
+			!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+				password
+			)
+		) {
+			alert('비밀번호는 영어, 숫자, 특수문자를 포함한 8자 이상이어야 합니다.');
+			return;
+		}
+
 		try {
 			const userDoc = doc(db, 'users', userDocId);
 			await updateDoc(userDoc, { password });

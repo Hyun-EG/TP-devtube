@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import logo from '../assets/header_logo.png';
+import logo from '../assets/header_logo.svg';
 import { useNavigate } from 'react-router-dom';
 
 export function FindId() {

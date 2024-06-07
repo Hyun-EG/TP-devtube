@@ -22,18 +22,21 @@ export function EditUserProfile({ onClose, userData }) {
 			return;
 		}
 
-		if (password !== confirmPassword) {
-			alert('비밀번호가 일치하지 않습니다.');
+		// Check if the password contains at least one English letter
+		if (!/[a-zA-Z]/.test(password)) {
+			alert('비밀번호에는 영문자를 최소 한 개 포함해야 합니다.');
 			return;
 		}
 
-		if (!/^[가-힣a-zA-Z\s]+$/.test(name)) {
-			alert('올바른 이름을 입력하세요.');
+		// Check if the password contains at least one digit
+		if (!/\d/.test(password)) {
+			alert('비밀번호에는 숫자를 최소 한 개 포함해야 합니다.');
 			return;
 		}
 
-		if (!/^[a-zA-Z0-9가-힣\s]+$/.test(channelName)) {
-			alert('채널 이름에는 영문, 한글, 숫자만 입력하세요.');
+		// Check if the password contains at least one special character
+		if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+			alert('비밀번호에는 특수문자를 최소 한 개 포함해야 합니다.');
 			return;
 		}
 

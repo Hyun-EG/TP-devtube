@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/header_logo.png';
+import logo from '../assets/header_logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpUser } from '../redux/authAction';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 export function SignUp() {
 	const [name, setName] = useState('');
 	const [channelName, setChannelName] = useState('');
@@ -26,6 +27,21 @@ export function SignUp() {
 	}, [signUpSuccess, navigate]);
 
 	const handleSignUp = () => {
+		// Check if the password meets the requirements
+		if (
+			!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+				password
+			)
+		) {
+			alert('비밀번호는 영어, 숫자, 특수문자를 포함한 8자 이상이어야 합니다.');
+			return;
+		}
+
+		if (password !== confirmPassword) {
+			alert('비밀번호가 일치하지 않습니다.');
+			return;
+		}
+
 		dispatch(signUpUser(name, channelName, email, password, confirmPassword));
 	};
 

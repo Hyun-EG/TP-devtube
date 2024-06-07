@@ -41,22 +41,22 @@ export function FindId() {
 			<div className="find-id">
 				<div className="wrapper">
 					<div className="header">
-						<img src={logo} alt="header-logo" />
+						<img className="find-id-logo-img" src={logo} alt="header-logo" />
 					</div>
 					<div className="find-id-content">
 						<span className="title">Find id</span>
-						<span>아이디찾기</span>
+						<span className="title">아이디찾기</span>
 					</div>
-					<div className="input-area">
+					<div className="find-id-input-area">
 						<input
-							className="input-box"
+							className="find-id-input-box"
 							type="text"
 							placeholder="이름을 입력해주세요"
 							value={name}
 							onChange={e => setName(e.target.value)}
 						/>
 						<input
-							className="input-box"
+							className="find-id-input-box"
 							type="text"
 							placeholder="채널이름을 입력해주세요"
 							value={channelName}

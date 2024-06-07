@@ -41,7 +41,7 @@ export function SignUp() {
 			<div className="sign-up">
 				<div className="wrapper">
 					<div className="header">
-						<img className="signup-header-logo" src={logo} alt="header-logo" />
+						<img className="sign-up-header-logo" src={logo} alt="header-logo" />
 					</div>
 					<div className="sign-up-content">
 						<span className="content">Sign up</span>

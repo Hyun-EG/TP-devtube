@@ -95,8 +95,6 @@ export const Home = () => {
 	};
 
 	const opts = {
-		height: '240',
-		width: '496',
 		playerVars: {
 			autoplay: 0
 		}
@@ -127,7 +125,7 @@ export const Home = () => {
 				</div>
 				<div className="board-wrapper">
 					<div className="first-line">
-						<div className="impormation-channel-area">
+						<div className="information-channel-area">
 							<div className="__content-title">
 								<span>채널 정보</span>
 								<button
@@ -169,6 +167,7 @@ export const Home = () => {
 								<YouTube
 									videoId="ymtDGOp13ns?si=2N7NC7bN1Moy8H0j"
 									opts={opts}
+									className="youtube-video"
 								/>
 							</div>
 						</div>
@@ -186,8 +185,8 @@ export const Home = () => {
 							</div>
 						</div>
 						<div className="schedule">
-							<table>
-								<thead>
+							<table className="__table">
+								<thead className="__thead">
 									<tr>
 										{weekDates.map((date, index) => (
 											<th key={index} className={isToday(date) ? 'today' : ''}>

@@ -51,36 +51,40 @@ export function FindPassword() {
 			<div className="find-password">
 				<div className="wrapper">
 					<div className="header">
-						<img src={logo} alt="header-logo" />
+						<img
+							className="find-password-logo-img"
+							src={logo}
+							alt="header-logo"
+						/>
 					</div>
 					<div className="find-password-content">
 						<span className="title">Find password</span>
-						<span>비밀번호 찾기</span>
+						<span className="title">비밀번호 찾기</span>
 					</div>
-					<div className="input-area">
+					<div className="find-password-input-area">
 						<input
-							className="input-box"
+							className="find-password-input-box"
 							type="text"
 							placeholder="이름을 입력해주세요"
 							value={name}
 							onChange={e => setName(e.target.value)}
 						/>
 						<input
-							className="input-box"
+							className="find-password-input-box"
 							type="text"
 							placeholder="채널이름을 입력해주세요"
 							value={channelName}
 							onChange={e => setChannelName(e.target.value)}
 						/>
 						<input
-							className="input-box"
+							className="find-password-input-box"
 							type="text"
 							placeholder="이메일을 입력해주세요"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 						/>
 					</div>
-					<div className="footer">
+					<div className="find-password-footer">
 						<span className="password-login-btn" onClick={handleLoginClick}>
 							로그인
 						</span>

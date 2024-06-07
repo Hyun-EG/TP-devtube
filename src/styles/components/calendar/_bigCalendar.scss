@@ -437,6 +437,12 @@ button.rbc-input {
 	&:focus {
 		outline: 3px auto #065fd4;
 	}
+	@each $color in $colors {
+    $color-str: str-slice($color, 2);
+    &.colorbar-#{$color-str} {
+      background-color: #{$color};
+    }
+  }
 }
 .rbc-day-slot {
 	.rbc-background-event {

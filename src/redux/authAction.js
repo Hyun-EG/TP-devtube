@@ -19,6 +19,7 @@ export const loginUser = (email, password) => async dispatch => {
 		const user = await getUserByEmail(email);
 		if (user && user.password === password) {
 			dispatch(setUser(user));
+			localStorage.setItem('user', JSON.stringify(user));
 		} else {
 			dispatch(setError('아이디 또는 비밀번호가 틀렸습니다.'));
 		}

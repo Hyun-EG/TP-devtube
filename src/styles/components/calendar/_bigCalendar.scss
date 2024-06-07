@@ -1,37 +1,26 @@
-$color_1: inherit;
-$color_2: #999999;
-$color_3: #6d6f71;
-$color_4: #373a3c;
-$color_5: #282828;
-$color_6: #def1ff;
-$color_7: #065fd4;
-$color_8: #0048a6;
-$color_10: white;
 $font-family: 'pretendard';
-$background-color_1: #fafdff;
-$background-color_2: #e6e6e6;
-$background-color_3: #def1ff;
-$background-color_4: #065fd4;
-$background-color_5: rgba(0, 0, 0, 0.1);
-$background-color_6: rgba(255, 255, 255, 0.3);
-$background-color_7: transparent;
-$background-color_8: #fafafa;
-$background-color_9: #fff;
-$background-color_11: rgba(0, 0, 0, 0.5);
-$background-color_12: #74ad31;
-$border-color_1: #e8e8e8;
-$border-color_2: #8c8c8c;
-$border-color_3: #adadad;
+$blue-100: #def1ff;
+$blue-400: #065fd4;
+$blue-600: #0048a6;
+$grey-100: #fafdff;
+$grey-200: #fafafa;
+$grey-300: #e6e6e6;
+$grey-400: #e8e8e8;
+$grey-500: #adadad;
+$grey-600: #8c8c8c;
+$grey-700: #999999;
+$grey-800: #6d6f71;
+$grey-900: #373a3c;
+$color_black: #282828;
+$green-400: #74ad31;
 
-/* ▼ 프리텐다드 */
 @import 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css';
-/* ▲ 프리텐다드 */
 
 body {
 	font-family: $font-family;
 }
 .rbc-btn {
-	color: $color_1;
+	color: inherit;
 	font: inherit;
 	margin: 0;
 }
@@ -53,8 +42,10 @@ button.rbc-input {
 .rbc-calendar {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	width: 120vh;
-	height: 100%;
+	width: calc(100% - 250px);
+	height: 100vh;
+	margin-left: 250px;
+	padding: 3.91vh;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -118,18 +109,18 @@ button.rbc-input {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	font-family: $font-family;
-	background-color: $background-color_6;
+	background-color: rgba(255, 255, 255, 0.3);
 	z-index: 4;
 	font-weight: bold;
 	font-size: 75%;
 	height: auto;
 	line-height: normal;
-	color: $color_7;
+	color: $blue-400;
 	&:hover {
-		color: $color_8;
+		color: $blue-600;
 	}
 	&:focus {
-		color: $color_8;
+		color: $blue-600;
 	}
 }
 .rbc-row-segment {
@@ -223,7 +214,7 @@ button.rbc-input {
 	}
 }
 .rbc-off-range {
-	color: $color_2;
+	color: $grey-700;
 }
 .rbc-header {
 	overflow: hidden;
@@ -245,20 +236,20 @@ button.rbc-input {
 		}
 	}
 	> a {
-		color: $color_1;
+		color: inherit;
 		text-decoration: none;
 		&:active {
-			color: $color_1;
+			color: inherit;
 			text-decoration: none;
 		}
 		&:visited {
-			color: $color_1;
+			color: inherit;
 			text-decoration: none;
 		}
 	}
 }
 .rbc-button-link {
-	color: $color_1;
+	color: inherit;
 	font-size: 0.95rem;
 	background: none;
 	margin: 0;
@@ -297,7 +288,7 @@ button.rbc-input {
 	}
 }
 .rbc-today {
-	background-color: $background-color_1;
+	background-color: $grey-100;
 }
 .rbc-toolbar {
 	display: -webkit-box;
@@ -320,11 +311,11 @@ button.rbc-input {
 		flex-grow: 1;
 		padding: 0 10px;
 		text-align: center;
-		font-size: 1.3rem;
-		font-weight: bold;
+		font-size: 2.34vh;
+		font-weight: 600;
 	}
 	button {
-		color: $color_3;
+		color: $grey-800;
 		font-size: 0.9rem;
 		display: inline-block;
 		margin: 0;
@@ -339,43 +330,43 @@ button.rbc-input {
 		white-space: nowrap;
 		&:active {
 			background-image: none;
-			background-color: $background-color_2;
-			border-color: $border-color_1;
+			background-color: $grey-300;
+			border-color: $grey-400;
 			&:hover {
-				color: $color_4;
-				background-color: $background-color_2;
-				border-color: $border-color_2;
+				color: $grey-900;
+				background-color: $grey-300;
+				border-color: $grey-600;
 			}
 			&:focus {
-				color: $color_4;
-				background-color: $background-color_2;
-				border-color: $border-color_2;
+				color: $grey-900;
+				background-color: $grey-300;
+				border-color: $grey-600;
 			}
 		}
 		&:focus {
-			color: $color_4;
-			background-color: $background-color_2;
-			border-color: $border-color_2;
+			color: $grey-900;
+			background-color: $grey-300;
+			border-color: $grey-600;
 		}
 		&:hover {
-			color: $color_4;
-			background-color: $background-color_2;
-			border-color: $border-color_3;
+			color: $grey-900;
+			background-color: $grey-300;
+			border-color: $grey-500;
 		}
 	}
 	button.rbc-active {
 		background-image: none;
-		background-color: $background-color_2;
-		border-color: $border-color_1;
+		background-color: $grey-300;
+		border-color: $grey-400;
 		&:hover {
-			color: $color_4;
-			background-color: $background-color_2;
-			border-color: $border-color_2;
+			color: $grey-900;
+			background-color: $grey-300;
+			border-color: $grey-600;
 		}
 		&:focus {
-			color: $color_4;
-			background-color: $background-color_2;
-			border-color: $border-color_2;
+			color: $grey-900;
+			background-color: $grey-300;
+			border-color: $grey-600;
 		}
 	}
 }
@@ -416,7 +407,7 @@ button.rbc-input {
 	}
 }
 .time-slot-blue {
-	background-color: $background-color_3;
+	background-color: $blue-100;
 }
 .rbc-event {
 	-webkit-box-sizing: border-box;
@@ -425,9 +416,9 @@ button.rbc-input {
 	box-shadow: none;
 	margin: 0;
 	padding: 2px 5px;
-	background-color: $background-color_3;
+	background-color: $blue-100;
 	border-radius: 4px;
-	color: $color_5;
+	color: $color_black;
 	cursor: pointer;
 	width: 100%;
 	text-align: left;
@@ -445,17 +436,17 @@ button.rbc-input {
 		box-shadow: none;
 		margin: 0;
 		padding: 2px 5px;
-		background-color: $background-color_3;
+		background-color: $blue-100;
 		border-radius: 4px;
-		color: $color_5;
+		color: $color_black;
 		cursor: pointer;
 		width: 100%;
 		text-align: left;
 		font-size: 0.85rem;
 		font-weight: 500;
-		border: 1px solid #ffffff;
-		background-color: $background-color_3;
-		color: $color_5;
+		border: 1px solid #fff;
+		background-color: $blue-100;
+		color: $color_black;
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -482,8 +473,8 @@ button.rbc-input {
 		}
 	}
 	.rbc-selected.rbc-background-event {
-		background-color: $background-color_4;
-		color: $color_6;
+		background-color: $blue-400;
+		color: $blue-100;
 	}
 	position: relative;
 	.rbc-events-container {
@@ -499,9 +490,9 @@ button.rbc-input {
 		right: 0;
 	}
 	.rbc-event {
-		border: 1px solid #ffffff;
-		background-color: $background-color_3;
-		color: $color_5;
+		border: 1px solid #fff;
+		background-color: $blue-100;
+		color: $color_black;
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -552,8 +543,8 @@ button.rbc-input {
 	cursor: move;
 }
 .rbc-event.rbc-selected {
-	background-color: $background-color_4;
-	color: $color_6;
+	background-color: $blue-400;
+	color: $blue-100;
 }
 .rbc-event-overlaps {
 	-webkit-box-shadow: -1px 1px 5px 0px rgba(51, 51, 51, 0.5);
@@ -585,17 +576,17 @@ button.rbc-input {
 	flex-direction: row;
 }
 .rbc-selected-cell {
-	background-color: $background-color_5;
+	background-color: rgba(0, 0, 0, 0.1);
 }
 .one-day-schedule {
-	background-color: $background-color_7;
-	color: $color_5;
+	background-color: transparent;
+	color: $color_black;
 	position: relative;
 	left: 1rem;
 	width: calc(100% - 1rem);
 	&::before {
 		content: '●';
-		color: $color_7;
+		color: $blue-400;
 		font-size: 0.7rem;
 		position: absolute;
 		left: -0.8rem;
@@ -636,10 +627,10 @@ button.rbc-input {
 		text-align: start;
 		padding: 0.3rem 0 0.3rem 0.5rem;
 		&:first-child {
-			background-color: $background-color_8;
+			background-color: $grey-200;
 		}
 		&:last-child {
-			background-color: $background-color_8;
+			background-color: $grey-200;
 		}
 	}
 }
@@ -673,14 +664,14 @@ button.rbc-input {
 	padding-right: 5px;
 	text-align: right;
 	> a {
-		color: $color_1;
+		color: inherit;
 		text-decoration: none;
 		&:active {
-			color: $color_1;
+			color: inherit;
 			text-decoration: none;
 		}
 		&:visited {
-			color: $color_1;
+			color: inherit;
 			text-decoration: none;
 		}
 	}
@@ -693,10 +684,10 @@ button.rbc-input {
 	-ms-flex: 1 0 0%;
 	flex: 1 0 0%;
 	&:first-child {
-		background-color: $background-color_8;
+		background-color: $grey-200;
 	}
 	&:last-child {
-		background-color: $background-color_8;
+		background-color: $grey-200;
 	}
 	+ {
 		.rbc-day-bg {
@@ -708,7 +699,7 @@ button.rbc-input {
 	position: absolute;
 	z-index: 5;
 	border: 1px solid #e5e5e5;
-	background-color: $background-color_9;
+	background-color: #fff;
 	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 	padding: 10px;
@@ -835,13 +826,13 @@ button.rbc-input {
 .rbc-label {
 	padding: 0 5px;
 	font-size: 0.85rem;
-	color: $color_3;
+	color: $grey-800;
 }
 .rbc-time-view-resources {
 	.rbc-time-gutter {
 		position: sticky;
 		left: 0;
-		background-color: $background-color_9;
+		background-color: #fff;
 		border-right: 1px solid #ddd;
 		z-index: 10;
 		margin-right: -1px;
@@ -849,7 +840,7 @@ button.rbc-input {
 	.rbc-time-header-gutter {
 		position: sticky;
 		left: 0;
-		background-color: $background-color_9;
+		background-color: #fff;
 		border-right: 1px solid #ddd;
 		z-index: 10;
 		margin-right: -1px;
@@ -926,8 +917,8 @@ button.rbc-input {
 .rbc-slot-selection {
 	z-index: 10;
 	position: absolute;
-	background-color: $background-color_11;
-	color: $color_10;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #fff;
 	font-size: 75%;
 	width: 100%;
 	padding: 3px;
@@ -1040,7 +1031,7 @@ button.rbc-input {
 	left: 0;
 	right: 0;
 	height: 1px;
-	background-color: $background-color_12;
+	background-color: $green-400;
 	pointer-events: none;
 }
 @media (max-width: 767px) {

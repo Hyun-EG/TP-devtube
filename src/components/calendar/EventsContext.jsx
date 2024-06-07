@@ -21,17 +21,14 @@ const LocalStorageUserData = () => {
 	return userData ? userData.id : null;
 };
 
-// Create context
 const EventsContext = createContext();
 
-// Initial state
 const initialState = {
 	items: [],
 	status: 'idle',
 	error: null
 };
 
-// Reducer
 const eventsReducer = (state, action) => {
 	switch (action.type) {
 		case 'FETCH_EVENTS_REQUEST':
@@ -59,7 +56,6 @@ const eventsReducer = (state, action) => {
 	}
 };
 
-// Context Provider component
 export const EventsProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(eventsReducer, initialState);
 
@@ -162,7 +158,6 @@ export const EventsProvider = ({ children }) => {
 	);
 };
 
-// Custom hook to use the Events context
 export const useEvents = () => {
 	return useContext(EventsContext);
 };

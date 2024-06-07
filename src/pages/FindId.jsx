@@ -36,6 +36,12 @@ export function FindId() {
 		navigate('/');
 	};
 
+	const handleKeyDown = event => {
+		if (event.key === 'Enter') {
+			handleFindId();
+		}
+	};
+
 	return (
 		<>
 			<div className="find-id">
@@ -54,6 +60,7 @@ export function FindId() {
 							placeholder="이름을 입력해주세요"
 							value={name}
 							onChange={e => setName(e.target.value)}
+							onKeyDown={handleKeyDown}
 						/>
 						<input
 							className="find-id-input-box"
@@ -61,6 +68,7 @@ export function FindId() {
 							placeholder="채널이름을 입력해주세요"
 							value={channelName}
 							onChange={e => setChannelName(e.target.value)}
+							onKeyDown={handleKeyDown}
 						/>
 					</div>
 

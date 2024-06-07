@@ -40,7 +40,7 @@ const BigCalendar = () => {
 			start: dayjs(start).format('YYYY-MM-DDTHH:mm'),
 			end: dayjs(end).format('YYYY-MM-DDTHH:mm'),
 			note: '',
-			colorbar: '',
+			colorbar: ''
 		});
 		setHeaderTitle('새 일정');
 		setModalIsOpen(true);
@@ -97,17 +97,18 @@ const BigCalendar = () => {
 		(event, start, end, isSelected) => ({
 			...(dayjs(start).hour() === 0 && // 시작 시간이 오전 12:00이고
 				dayjs(end).hour() === 0 && // 종료 시간이 다음 날 오전 12:00이며
-				dayjs(end).diff(dayjs(start), 'hours') <= 24 && { // 24시간 이하인 경우
-				className: `one-day-schedule${event.colorbar.replace('#', '-')}`
-			}),
+				dayjs(end).diff(dayjs(start), 'hours') <= 24 && {
+					// 24시간 이하인 경우
+					className: `one-day-schedule${event.colorbar.replace('#', '-')}`
+				}),
 			...(dayjs(start).isSame(end, 'day') && // 시작과 종료 날짜가 같고
-				dayjs(end).diff(dayjs(start), 'hours') <= 24 && { // 그 기간이 24시간 이하인 경우
-				className: `one-day-schedule${event.colorbar.replace('#', '-')}`
-			}),
+				dayjs(end).diff(dayjs(start), 'hours') <= 24 && {
+					// 그 기간이 24시간 이하인 경우
+					className: `one-day-schedule${event.colorbar.replace('#', '-')}`
+				}),
 			...(dayjs(end).diff(dayjs(start), 'hours') > 24 && {
 				className: `colorbar-${event.colorbar.replace('#', '')}`
 			})
-
 		}),
 		[]
 	);

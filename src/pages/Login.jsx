@@ -24,10 +24,10 @@ export function Login() {
 	}, [user, navigate]);
 
 	useEffect(() => {
-		if (error) {
+		if (error && !loading) {
 			alert(error);
 		}
-	}, [error]);
+	}, [error, loading]);
 
 	const handleSignUpClick = () => {
 		navigate('/signup');

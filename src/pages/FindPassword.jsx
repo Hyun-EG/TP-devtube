@@ -40,6 +40,12 @@ export function FindPassword() {
 		navigate('/');
 	};
 
+	const handleKeyDown = event => {
+		if (event.key === 'Enter') {
+			handleFindPassword();
+		}
+	};
+
 	return (
 		<>
 			{showEditPassword && (
@@ -68,6 +74,7 @@ export function FindPassword() {
 							placeholder="이름을 입력해주세요"
 							value={name}
 							onChange={e => setName(e.target.value)}
+							onKeyDown={handleKeyDown}
 						/>
 						<input
 							className="find-password-input-box"
@@ -75,6 +82,7 @@ export function FindPassword() {
 							placeholder="채널이름을 입력해주세요"
 							value={channelName}
 							onChange={e => setChannelName(e.target.value)}
+							onKeyDown={handleKeyDown}
 						/>
 						<input
 							className="find-password-input-box"
@@ -82,6 +90,7 @@ export function FindPassword() {
 							placeholder="이메일을 입력해주세요"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
+							onKeyDown={handleKeyDown}
 						/>
 					</div>
 					<div className="find-password-footer">

@@ -93,22 +93,38 @@ const BigCalendar = () => {
 	}));
 
 	// className customize
+	// className customize
 	const eventPropGetter = useCallback(
-		(event, start, end, isSelected) => ({
-			...(dayjs(start).hour() === 0 && // 시작 시간이 오전 12:00이고
-				dayjs(end).hour() === 0 && // 종료 시간이 다음 날 오전 12:00이며
-				dayjs(end).diff(dayjs(start), 'hours') <= 24 && { // 24시간 이하인 경우
-				className: `one-day-schedule${event.colorbar.replace('#', '-')}`
-			}),
-			...(dayjs(start).isSame(end, 'day') && // 시작과 종료 날짜가 같고
-				dayjs(end).diff(dayjs(start), 'hours') <= 24 && { // 그 기간이 24시간 이하인 경우
-				className: `one-day-schedule${event.colorbar.replace('#', '-')}`
-			}),
-			...(dayjs(end).diff(dayjs(start), 'hours') > 24 && {
-				className: `colorbar-${event.colorbar.replace('#', '')}`
-			})
+		(event, start, end, isSelected) => {
+			const classNames = [];
 
-		}),
+			if (
+				dayjs(start).hour() === 0 && // 시작 시간이 오전 12:00이고
+				dayjs(end).hour() === 0 && // 종료 시간이 다음 날 오전 12:00이며
+				dayjs(end).diff(dayjs(start), 'hours') <= 24 // 24시간 이하인 경우
+			) {
+				if (event.colorbar) {
+					classNames.push(`one-day-schedule${event.colorbar.replace('#', '-')}`);
+				}
+			}
+
+			if (
+				dayjs(start).isSame(end, 'day') && // 시작과 종료 날짜가 같고
+				dayjs(end).diff(dayjs(start), 'hours') <= 24 // 그 기간이 24시간 이하인 경우
+			) {
+				if (event.colorbar) {
+					classNames.push(`one-day-schedule${event.colorbar.replace('#', '-')}`);
+				}
+			}
+
+			if (dayjs(end).diff(dayjs(start), 'hours') > 24) {
+				if (event.colorbar) {
+					classNames.push(`colorbar-${event.colorbar.replace('#', '')}`);
+				}
+			}
+
+			return { className: classNames.join(' ') };
+		},
 		[]
 	);
 

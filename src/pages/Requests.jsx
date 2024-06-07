@@ -9,8 +9,13 @@ function Requests() {
 		<>
 			<Header />
 			<Sidebar />
-			<RequestForm />
-      <RequestList />
+			<div className="requests">
+				<div className="requests__title">수익 정정 신청</div>
+				<RequestForm />
+				<div className="requests__title">신청 내역</div>
+				<RequestList />
+			</div>
+			
 		</>
 	);
 }

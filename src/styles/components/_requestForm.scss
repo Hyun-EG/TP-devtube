@@ -1,0 +1,57 @@
+
+.requests_wrapper {
+  width: 100%;
+  margin: 3.13vh 0;
+  padding: 1.3889vw;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+
+  .contents {
+    @include flex;
+    padding-bottom: 10px;
+    gap: 1vw;
+
+    .item {
+      width: 50%;
+      @include column-flex;
+
+      &__detail {
+        width: 100%;
+        @include column-flex;
+    }
+
+      .input_box {
+        max-width: 100vw;
+        height: 50px;
+        border: 1px solid lightgrey;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #6D6F71;
+        &:focus {
+          outline: none;
+        }
+      }  
+    }
+
+    .input_title {
+      width: 100%;
+      margin-bottom: 5px;
+      color: #282828;
+    }
+
+    .input_box {
+      width: 100%;
+      // max-width: 515px;
+      height: 50px;
+      margin-bottom: 10px;
+      padding-left: 10px;
+      border: 1px solid lightgrey;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #6D6F71;
+      &:focus {
+        outline: none;
+      }
+    }  
+  }
+}

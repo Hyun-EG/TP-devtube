@@ -14,7 +14,7 @@
 .modal-content {
 	background: white;
 	border-radius: 8px;
-	padding: 20px;
+	padding: 1rem;
 	width: 450px;
 	max-width: 90%;
 }
@@ -96,4 +96,36 @@
 .error-message {
 	color: #cc0000;
 	font-size: 0.875rem;
+}
+
+/* New styles for color selector */
+.color-selector {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  gap: 1rem;	
+}
+
+.color-box {
+	width: 1.7rem;
+	height: 1.7rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border: 2px solid transparent;	
+	&:first-child {
+    background: url('../../../assets/diagonal.svg') no-repeat;
+    background-size: contain;
+		border: 2px solid #D9D9D9;
+		box-sizing: border-box;
+  }
+}
+.color-box.selected {
+	border-color: #282828;
+}
+.checkmark {
+	color: white;
+	font-size: 12px;
 }

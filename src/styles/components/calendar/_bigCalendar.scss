@@ -22,6 +22,16 @@ $background-color_12: #74ad31;
 $border-color_1: #e8e8e8;
 $border-color_2: #8c8c8c;
 $border-color_3: #adadad;
+$colors: (	
+	'#ffadad',
+	'#ffbf70',
+	'#2ec4b6',
+	'#a0c4ff',
+	'#bdb2ff',
+	'#ffc6ff',
+	'#b5e48c',
+	'#ffe359',	
+);
 
 /* ▼ 프리텐다드 */
 @import 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css';
@@ -297,7 +307,7 @@ button.rbc-input {
 	}
 }
 .rbc-today {
-	background-color: $background-color_1;
+	background-color: $background-color_1;	
 }
 .rbc-toolbar {
 	display: -webkit-box;
@@ -419,23 +429,31 @@ button.rbc-input {
 	background-color: $background-color_3;
 }
 .rbc-event {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	margin: 0;
-	padding: 2px 5px;
-	background-color: $background-color_3;
-	border-radius: 4px;
-	color: $color_5;
-	cursor: pointer;
-	width: 100%;
-	text-align: left;
-	font-size: 0.85rem;
-	font-weight: 500;
-	&:focus {
-		outline: 3px auto #065fd4;
-	}
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 2px 5px;
+  background-color: $background-color_3;
+  border-radius: 4px;
+  color: $color_5;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  &:focus {
+    outline: 3px auto #065fd4;
+  }
+
+  @each $color in $colors {
+    $color-str: str-slice($color, 2);
+    &.colorbar-#{$color-str} {
+      background-color: #{$color};
+    }
+  }
 }
 .rbc-day-slot {
 	.rbc-background-event {
@@ -453,9 +471,7 @@ button.rbc-input {
 		text-align: left;
 		font-size: 0.85rem;
 		font-weight: 500;
-		border: 1px solid #ffffff;
-		background-color: $background-color_3;
-		color: $color_5;
+		border: 1px solid #ffffff;		
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -493,6 +509,14 @@ button.rbc-input {
 		right: 0;
 		margin-right: 10px;
 		top: 0;
+		.one-day-schedule {
+			@each $color in $colors {
+				$color-str: str-slice($color, 2);
+				&-#{$color-str} {
+					background-color: #{$color};									
+				}
+			}
+		}
 	}
 	.rbc-events-container.rbc-rtl {
 		left: 10px;
@@ -593,14 +617,36 @@ button.rbc-input {
 	position: relative;
 	left: 1rem;
 	width: calc(100% - 1rem);
+
 	&::before {
 		content: '●';
-		color: $color_7;
+		color: $color_7; // 기본 색상 설정
 		font-size: 0.7rem;
 		position: absolute;
 		left: -0.8rem;
 		top: 0.28rem;
 	}
+}
+.one-day-schedule {
+  @each $color in $colors {
+    $color-str: str-slice($color, 2);
+    &-#{$color-str} {
+      background-color: $background-color_7;
+      color: $color_5;
+      position: relative;
+      left: 1rem;
+      width: calc(100% - 1rem);
+
+      &::before {
+        content: '●';
+        color: #{$color};
+        font-size: 0.7rem;
+        position: absolute;
+        left: -0.8rem;
+        top: 0.28rem;
+      }
+    }
+  }
 }
 .rbc-month-view {
 	position: relative;

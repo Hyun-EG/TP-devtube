@@ -45,8 +45,23 @@ input {
 	font-size: 1.5vh;
 }
 
-.input-email-password {
+.input-email {
 	width: 36.5vh;
+	height: 5vh;
+	border-radius: 8px;
+	border: 1px solid lightgray;
+	margin-top: 1vh;
+	font-size: 1.5vh;
+}
+
+.password-input-container {
+	.toggle-password-btn {
+		font-size: 1.5vh;
+	}
+}
+
+.sign-up-input-password {
+	width: 33.5vh;
 	height: 5vh;
 	border-radius: 8px;
 	border: 1px solid lightgray;

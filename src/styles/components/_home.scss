@@ -116,27 +116,49 @@
 					width: 170vh;
 					border-collapse: collapse;
 
-					thead th,
-					td {
+					thead {
+						th {
+							border: 1px solid #d9d9d9;
+							padding: 1vh;
+							white-space: nowrap;
+							width: 16.5vh;
+							height: 3.7vh;
+							font-size: 1.5vh;
+
+							&:nth-child(1) {
+								color: #ff0000;
+								background-color: #fafafa;
+							}
+
+							&:nth-child(7) {
+								color: #065fd4;
+								background-color: #fafafa;
+							}
+							&.today {
+								background: lightgrey;
+							}
+						}
+					}
+
+					tbody td {
 						border: 1px solid #d9d9d9;
 						padding: 1vh;
 						white-space: nowrap;
 						width: 16.5vh;
-						height: 3.7vh;
-						font-size: 1.5vh;
-					}
-
-					tbody td {
-						width: 16.5vh;
 						height: 20vh;
+						font-size: 1.5vh;
 						overflow: auto;
-					}
 
-					.today {
-						background: lightgrey;
-					}
+						&:nth-child(1) {
+							background-color: #fafafa;
+						}
 
-					.date {
+						&:nth-child(7) {
+							background-color: #fafafa;
+						}
+
+						.date {
+						}
 					}
 				}
 			}

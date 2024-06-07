@@ -13,7 +13,7 @@ const getWeekDates = (date, weekOffset = 0) => {
 	const currentDate = new Date(date);
 	currentDate.setDate(currentDate.getDate() + weekOffset * 7);
 	const day = currentDate.getDay();
-	const diff = currentDate.getDate() - day + (day === 0 ? -6 : 1);
+	const diff = currentDate.getDate() - day + (day === 0 ? 0 : 7);
 	const startOfWeek = new Date(currentDate.setDate(diff));
 	const dates = Array.from({ length: 7 }).map((_, i) => {
 		const d = new Date(startOfWeek);
@@ -214,11 +214,7 @@ export const Home = () => {
 														return startDate <= date && date <= endDate;
 													})
 													.map(event => (
-														<div key={event.id}>
-															{event.title.length > 5
-																? `${event.title.slice(0, 7)}...`
-																: event.title}
-														</div>
+														<div key={event.id}>{`● ${event.title}`}</div>
 													))}
 											</td>
 										))}

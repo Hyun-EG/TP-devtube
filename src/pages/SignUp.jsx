@@ -3,13 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../assets/header_logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpUser } from '../redux/authAction';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 export function SignUp() {
 	const [name, setName] = useState('');
 	const [channelName, setChannelName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const signUpError = useSelector(state => state.auth.signUpError);
@@ -66,25 +69,41 @@ export function SignUp() {
 						</div>
 						<input
 							placeholder="Email 입력해주세요"
-							className="input-email-password"
+							className="input-email"
 							type="text"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 						/>
-						<input
-							placeholder="비밀번호 입력해주세요 (최소 8자)"
-							className="input-email-password"
-							type="password"
-							value={password}
-							onChange={e => setPassword(e.target.value)}
-						/>
-						<input
-							placeholder="비밀번호 다시 한번 입력해주세요"
-							className="input-email-password"
-							type="password"
-							value={confirmPassword}
-							onChange={e => setConfirmPassword(e.target.value)}
-						/>
+						<div className="password-input-container">
+							<input
+								placeholder="비밀번호 입력해주세요 (최소 8자)"
+								className="sign-up-input-password"
+								type={showPassword ? 'text' : 'password'}
+								value={password}
+								onChange={e => setPassword(e.target.value)}
+							/>
+							<button
+								className="toggle-password-btn"
+								onClick={() => setShowPassword(!showPassword)}>
+								<FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+							</button>
+						</div>
+						<div className="password-input-container">
+							<input
+								placeholder="비밀번호 다시 한번 입력해주세요"
+								className="sign-up-input-password"
+								type={showConfirmPassword ? 'text' : 'password'}
+								value={confirmPassword}
+								onChange={e => setConfirmPassword(e.target.value)}
+							/>
+							<button
+								className="toggle-password-btn"
+								onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+								<FontAwesomeIcon
+									icon={showConfirmPassword ? faEyeSlash : faEye}
+								/>
+							</button>
+						</div>
 					</div>
 					<div className="sign-up-footer">
 						<span
@@ -102,5 +121,3 @@ export function SignUp() {
 		</>
 	);
 }
-
-export default SignUp;

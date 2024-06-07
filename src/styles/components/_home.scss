@@ -5,42 +5,39 @@
 .home {
 	height: 100vh;
 	margin-left: 250px;
+	padding: 3.91vh;
 	background: #f9f9f9;
 
 	@include column-flex(start, start);
 
 	.header {
-		margin: 90px 0px 0px 30px;
-		.board-title {
-			display: block;
-			font-weight: bold;
-			font-size: 2vh;
-			width: 175vh;
-			padding-bottom: 10px;
-			border-bottom: 1px solid lightgrey;
-		}
+		width: 100%;
+		margin-top: 5.86vh;
+		border-bottom: 1px solid lightgrey;
+		font-size: 2.34vh;
+		padding-bottom: 1.56vh;
 	}
 
 	.board-wrapper {
-		margin: 15px 0px 0px 30px;
+		width: 100%;
 
 		.first-line {
-			@include flex;
+			@include flex(between, start);
+			margin: 3.13vh 0;
 
 			.information-channel-area {
-				width: 85vh;
-				height: 30vh;
+				width: 49%;
+				height: 33vh;
 				border-radius: 8px;
 				background: #fff;
-				margin-top: 1vh;
-				margin-right: 2.5vh;
 				font-size: 2vh;
 				border: 1px solid #d9d9d9;
+				padding: 1.39vh 1.39vw;
 
 				.__content-title {
 					@include flex(between);
-					font-size: 2vh;
-					margin: 1vh 1vh 4.5vh 1vh;
+					font-size: 1.95vh;
+					margin: 1vh 0 4.5vh 0;
 				}
 
 				.edit-btn {
@@ -55,29 +52,28 @@
 
 				.__content {
 					@include flex(between);
-					margin: 1.5vh 1vh 1.5vh 1vh;
+					margin: 2.3vh 0;
+					font-size: 1.56vh;
 				}
 			}
 
 			.shorts-area {
-				width: 85vh;
-				height: 30vh;
+				width: 49%;
+				height: 33vh;
 				border-radius: 8px;
 				background: #fff;
-				margin-top: 1vh;
 				border: 1px solid #d9d9d9;
+				padding: 1.39vh 1.39vw;
 
 				.__content-title {
 					@include column-flex(center, start);
-					margin: 1vh 0 1vh 1vh;
-					font-size: 2vh;
+					font-size: 1.95vh;
+					margin: 1vh 0;
 				}
 
 				.video {
 					position: relative;
-					width: 82vh;
-					height: 24vh;
-					margin: 0 auto;
+					height: 25vh;
 
 					iframe {
 						position: absolute;
@@ -91,17 +87,16 @@
 		}
 
 		.schedule-area {
-			width: 172.5vh;
-			height: 30vh;
 			background: #fff;
 			border-radius: 8px;
 			margin-top: 2.5vh;
 			border: 1px solid #d9d9d9;
+			padding: 1.39vh 1.39vw;
 
 			.__title {
 				@include flex(between);
 				font-size: 2vh;
-				margin: 1vh;
+				margin: 1vh 0 3vh 0;
 			}
 
 			.__btn {
@@ -109,11 +104,10 @@
 			}
 
 			.schedule {
-				width: 170vh;
-				margin: 0 auto;
+				margin: auto;
 
 				.__table {
-					width: 170vh;
+					width: 100%;
 					border-collapse: collapse;
 
 					thead {

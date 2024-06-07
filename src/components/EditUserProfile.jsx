@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/authAction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export function EditUserProfile({ onClose, userData }) {
 	const [name, setName] = useState(userData.name);
@@ -8,6 +10,9 @@ export function EditUserProfile({ onClose, userData }) {
 	const [email, setEmail] = useState(userData.email);
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 	const dispatch = useDispatch();
 	const loading = useSelector(state => state.auth.loading);
 
@@ -17,18 +22,21 @@ export function EditUserProfile({ onClose, userData }) {
 			return;
 		}
 
-		if (password !== confirmPassword) {
-			alert('비밀번호가 일치하지 않습니다.');
+		// Check if the password contains at least one English letter
+		if (!/[a-zA-Z]/.test(password)) {
+			alert('비밀번호에는 영문자를 최소 한 개 포함해야 합니다.');
 			return;
 		}
 
-		if (!/^[가-힣a-zA-Z\s]+$/.test(name)) {
-			alert('올바른 이름을 입력하세요.');
+		// Check if the password contains at least one digit
+		if (!/\d/.test(password)) {
+			alert('비밀번호에는 숫자를 최소 한 개 포함해야 합니다.');
 			return;
 		}
 
-		if (!/^[a-zA-Z0-9가-힣\s]+$/.test(channelName)) {
-			alert('채널 이름에는 영문, 한글, 숫자만 입력하세요.');
+		// Check if the password contains at least one special character
+		if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+			alert('비밀번호에는 특수문자를 최소 한 개 포함해야 합니다.');
 			return;
 		}
 
@@ -64,6 +72,7 @@ export function EditUserProfile({ onClose, userData }) {
 				<div className="email-input">
 					<div>Email</div>
 					<input
+						disabled
 						className="email-input-box"
 						type="text"
 						value={email}
@@ -72,21 +81,37 @@ export function EditUserProfile({ onClose, userData }) {
 				</div>
 				<div className="password-input">
 					<div>비밀번호</div>
-					<input
-						className="password-input-box"
-						type="password"
-						value={password}
-						onChange={e => setPassword(e.target.value)}
-					/>
+					<div className="password-input-container">
+						<input
+							className="password-input-box"
+							type={showPassword ? 'text' : 'password'}
+							value={password}
+							onChange={e => setPassword(e.target.value)}
+						/>
+						<button
+							className="toggle-password-btn"
+							onClick={() => setShowPassword(!showPassword)}>
+							<FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+						</button>
+					</div>
 				</div>
 				<div className="password-input">
 					<div>비밀번호 확인</div>
-					<input
-						className="password-input-box"
-						type="password"
-						value={confirmPassword}
-						onChange={e => setConfirmPassword(e.target.value)}
-					/>
+					<div className="password-input-container">
+						<input
+							className="password-input-box"
+							type={showConfirmPassword ? 'text' : 'password'}
+							value={confirmPassword}
+							onChange={e => setConfirmPassword(e.target.value)}
+						/>
+						<button
+							className="toggle-password-btn"
+							onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+							<FontAwesomeIcon
+								icon={showConfirmPassword ? faEyeSlash : faEye}
+							/>
+						</button>
+					</div>
 				</div>
 				<div className="modal-btn">
 					<button className="close-btn" onClick={onClose}>

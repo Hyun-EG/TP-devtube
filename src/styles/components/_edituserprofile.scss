@@ -7,58 +7,83 @@ input:focus {
 	outline: none;
 }
 
+button {
+	border: none;
+	background: white;
+}
+
 .edit-profile-modal {
-	left: 70vh;
+	z-index: 10;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	border: 1px solid #d8d8d8;
-	position: absolute;
-	width: 500px;
-	height: 492px;
+	width: 50vh;
+	height: 49vh;
 	background: white;
 	@include column-flex;
 	.name-area {
 		@include flex;
 		.__input-name {
+			font-size: 2vh;
 			.input-name-box {
-				width: 210px;
-				height: 50px;
-				margin: 0 7px 10px 0;
+				font-size: 1.5vh;
+				width: 21vh;
+				height: 5vh;
+				margin: 0 0.7vh 0.5vh 0;
 			}
 		}
 		.input-channel-name {
+			font-size: 2vh;
 			.input-name-box {
-				width: 210px;
-				height: 50px;
-				margin: 0 0 10px 7px;
+				font-size: 1.5vh;
+				width: 20vh;
+				height: 5vh;
+				margin: 0 0 0.5vh 0.7vh;
 			}
 		}
 	}
-	.email-input-box {
-		width: 436px;
-		height: 50px;
-		margin-bottom: 10px;
+	.email-input {
+		font-size: 2vh;
+		.email-input-box {
+			font-size: 1.5vh;
+			width: 42.5vh;
+			height: 5vh;
+			margin-bottom: 1vh;
+		}
 	}
 
-	.password-input-box {
-		width: 436px;
-		height: 50px;
-		margin-bottom: 10px;
+	.password-input {
+		font-size: 2vh;
+		.password-input-box {
+			font-size: 1.5vh;
+			width: 39.5vh;
+			height: 5vh;
+			margin-bottom: 1vh;
+		}
+		.toggle-password-btn {
+			font-size: 1.5vh;
+		}
 	}
 
 	.modal-btn {
-		margin: 30px;
+		margin: 3vh;
 		.close-btn {
-			width: 110px;
-			height: 42px;
+			font-size: 1.5vh;
+			width: 11vh;
+			height: 4.2vh;
 			border: 1px solid black;
 			background: white;
 			border-radius: 4px;
-			margin-right: 30px;
+			margin-right: 3vh;
 			cursor: pointer;
 		}
 
 		.edit-btn {
-			width: 110px;
-			height: 42px;
+			font-size: 1.5vh;
+			width: 11vh;
+			height: 4.2vh;
 			border: none;
 			color: white;
 			background: #065fd4;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/header_logo.png';
+import logo from '../assets/header_logo.svg';
 import { loginUser } from '../redux/authAction';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -24,10 +24,10 @@ export function Login() {
 	}, [user, navigate]);
 
 	useEffect(() => {
-		if (error) {
+		if (error && !loading) {
 			alert(error);
 		}
-	}, [error]);
+	}, [error, loading]);
 
 	const handleSignUpClick = () => {
 		navigate('/signup');
@@ -48,11 +48,11 @@ export function Login() {
 	};
 
 	return (
-		<>
+		<div className="login-wrapper">
 			<div className="login">
 				<div className="wrapper">
 					<div className="header">
-						<img src={logo} alt="header-logo" />
+						<img className="login-logo-img" src={logo} alt="header-logo" />
 					</div>
 					<div className="login-content">
 						<span className="sign-in">Sign in</span>
@@ -60,7 +60,7 @@ export function Login() {
 					</div>
 					<div className="input-area">
 						<input
-							className="input-box"
+							className="input-login-box"
 							type="text"
 							placeholder="ID 입력해주세요"
 							value={email}
@@ -68,7 +68,7 @@ export function Login() {
 							onKeyPress={handleKeyPress}
 						/>
 						<input
-							className="input-box"
+							className="input-login-box"
 							type="password"
 							placeholder="비밀번호 입력해주세요"
 							value={password}
@@ -76,19 +76,19 @@ export function Login() {
 							onKeyPress={handleKeyPress}
 						/>
 					</div>
-					<div className="find-id-password-area">
+					<div className="login-find-id-password-area">
 						<span className="find-id-password" onClick={handleFindIdClick}>
 							ID찾기
 						</span>
-						<span>|</span>
+						<span className="separation">|</span>
 						<span
 							className="find-id-password"
 							onClick={handleFindPasswordClick}>
 							비밀번호 찾기
 						</span>
 					</div>
-					<div className="footer">
-						<span className="footer-sign-up" onClick={handleSignUpClick}>
+					<div className="login-footer">
+						<span className="login-footer-sign-up" onClick={handleSignUpClick}>
 							회원가입
 						</span>
 						<button
@@ -100,7 +100,7 @@ export function Login() {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

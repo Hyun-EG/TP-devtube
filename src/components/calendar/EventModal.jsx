@@ -15,6 +15,7 @@ const EventModal = ({
 	const [start, setStart] = useState(new Date());
 	const [end, setEnd] = useState(new Date());
 	const [note, setNote] = useState('');
+	const [colorbar, setColorbar] = useState('');
 	const [errors, setErrors] = useState({});
 
 	useEffect(() => {
@@ -23,11 +24,13 @@ const EventModal = ({
 			setStart(event.start ? new Date(event.start) : new Date());
 			setEnd(event.end ? new Date(event.end) : new Date());
 			setNote(event.note || '');
+			setColorbar(event.colorbar || '');
 		} else {
 			setTitle('');
 			setStart(new Date());
 			setEnd(new Date());
 			setNote('');
+			setColorbar('');
 		}
 	}, [event]);
 
@@ -49,7 +52,8 @@ const EventModal = ({
 			title,
 			start,
 			end,
-			note
+			note,
+			colorbar
 		};
 
 		onSubmit(updatedEvent);
@@ -76,6 +80,13 @@ const EventModal = ({
 						required
 						error={!!errors.title}
 						errorMessage={errors.title}
+					/>
+					<ModalInputs
+						label="색상"
+						type="colorbar"
+						value={colorbar}
+						onChange={setColorbar}
+						error={!!errors.colorbar}
 					/>
 					<ModalInputs
 						label="시작"

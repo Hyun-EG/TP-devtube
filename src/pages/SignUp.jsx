@@ -41,11 +41,11 @@ export function SignUp() {
 			<div className="sign-up">
 				<div className="wrapper">
 					<div className="header">
-						<img src={logo} alt="header-logo" />
+						<img className="signup-header-logo" src={logo} alt="header-logo" />
 					</div>
 					<div className="sign-up-content">
 						<span className="content">Sign up</span>
-						<span>회원가입</span>
+						<span className="content">회원가입</span>
 					</div>
 					<div className="input-area">
 						<div>
@@ -86,7 +86,7 @@ export function SignUp() {
 							onChange={e => setConfirmPassword(e.target.value)}
 						/>
 					</div>
-					<div className="footer">
+					<div className="sign-up-footer">
 						<span
 							className="footer-sign-in"
 							onClick={handleLoginClick}

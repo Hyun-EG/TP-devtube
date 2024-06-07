@@ -42,12 +42,6 @@ const CalendarChild = ({
 			eventPropGetter={eventPropGetter}
 			messages={messages}
 			formats={formats}
-			style={{
-				height: '100vh',
-				width: 'calc(100% - 15.625rem)',
-				marginLeft: '15.625rem',
-				padding: '2.5rem'
-			}} // 임시로 지정한 스타일.
 		/>
 	);
 };

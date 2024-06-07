@@ -120,9 +120,7 @@ export const Home = () => {
 				/>
 			)}
 			<div className="home">
-				<div className="header">
-					<span className="board-title">대시보드</span>
-				</div>
+				<div className="header">대시보드</div>
 				<div className="board-wrapper">
 					<div className="first-line">
 						<div className="information-channel-area">

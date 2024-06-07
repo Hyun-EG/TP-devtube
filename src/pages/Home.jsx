@@ -11,8 +11,8 @@ import { fetchEvents } from '../redux/eventsSlice';
 
 const getWeekDates = (date, weekOffset = 0) => {
 	const currentDate = new Date(date);
-	const dayOfWeek = currentDate.getDay(); // 오늘의 요일 (0: 일요일, 1: 월요일, ..., 6: 토요일)
-	const startOfWeek = new Date(currentDate); // 이번 주의 첫날
+	const dayOfWeek = currentDate.getDay();
+	const startOfWeek = new Date(currentDate);
 	startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek + weekOffset * 7);
 
 	const dates = Array.from({ length: 7 }).map((_, i) => {

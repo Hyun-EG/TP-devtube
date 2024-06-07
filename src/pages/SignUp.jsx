@@ -27,7 +27,6 @@ export function SignUp() {
 	}, [signUpSuccess, navigate]);
 
 	const handleSignUp = () => {
-		// Check if the password meets the requirements
 		if (
 			!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
 				password

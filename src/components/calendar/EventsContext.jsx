@@ -14,7 +14,6 @@ import {
 	doc
 } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import dayjs from 'dayjs';
 
 const LocalStorageUserData = () => {
 	const userData = JSON.parse(localStorage.getItem('userData'));
@@ -92,7 +91,8 @@ export const EventsProvider = ({ children }) => {
 				...event,
 				start: event.start,
 				end: event.end,
-				note: event.note || ''
+				note: event.note || '',
+				colorbar: event.colorbar || ''
 			};
 
 			const docRef = await addDoc(
@@ -119,7 +119,8 @@ export const EventsProvider = ({ children }) => {
 				...event,
 				start: event.start,
 				end: event.end,
-				note: event.note || ''
+				note: event.note || '',
+				colorbar: event.colorbar || ''
 			};
 
 			await updateDoc(

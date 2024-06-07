@@ -1,6 +1,7 @@
 import React from 'react';
 import TimePickerInput from './TimePickerInput';
 import '../../styles/components/calendar/_eventModal.scss';
+import ColorPicekrInput from './ColorPickerInput'
 
 const ModalInputs = ({
 	label,
@@ -34,6 +35,15 @@ const ModalInputs = ({
 			{type === 'date' && (
 				<TimePickerInput
 					selectedDate={value}
+					onChange={onChange}
+					placeholder={label}
+					error={error}
+				/>
+			)}
+			{type === 'colorbar' && (
+				<ColorPicekrInput
+					type={type}
+					value={value}
 					onChange={onChange}
 					placeholder={label}
 					error={error}

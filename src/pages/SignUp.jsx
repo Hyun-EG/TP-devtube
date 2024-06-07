@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/header_logo.png';
+import logo from '../assets/header_logo.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpUser } from '../redux/authAction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export function SignUp() {
 	const [name, setName] = useState('');
@@ -10,6 +12,8 @@ export function SignUp() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const signUpError = useSelector(state => state.auth.signUpError);
@@ -23,6 +27,20 @@ export function SignUp() {
 	}, [signUpSuccess, navigate]);
 
 	const handleSignUp = () => {
+		if (
+			!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+				password
+			)
+		) {
+			alert('비밀번호는 영어, 숫자, 특수문자를 포함한 8자 이상이어야 합니다.');
+			return;
+		}
+
+		if (password !== confirmPassword) {
+			alert('비밀번호가 일치하지 않습니다.');
+			return;
+		}
+
 		dispatch(signUpUser(name, channelName, email, password, confirmPassword));
 	};
 
@@ -41,11 +59,11 @@ export function SignUp() {
 			<div className="sign-up">
 				<div className="wrapper">
 					<div className="header">
-						<img src={logo} alt="header-logo" />
+						<img className="sign-up-header-logo" src={logo} alt="header-logo" />
 					</div>
 					<div className="sign-up-content">
 						<span className="content">Sign up</span>
-						<span>회원가입</span>
+						<span className="content">회원가입</span>
 					</div>
 					<div className="input-area">
 						<div>
@@ -66,27 +84,43 @@ export function SignUp() {
 						</div>
 						<input
 							placeholder="Email 입력해주세요"
-							className="input-email-password"
+							className="input-email"
 							type="text"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 						/>
-						<input
-							placeholder="비밀번호 입력해주세요 (최소 8자)"
-							className="input-email-password"
-							type="password"
-							value={password}
-							onChange={e => setPassword(e.target.value)}
-						/>
-						<input
-							placeholder="비밀번호 다시 한번 입력해주세요"
-							className="input-email-password"
-							type="password"
-							value={confirmPassword}
-							onChange={e => setConfirmPassword(e.target.value)}
-						/>
+						<div className="password-input-container">
+							<input
+								placeholder="비밀번호 입력해주세요 (최소 8자)"
+								className="sign-up-input-password"
+								type={showPassword ? 'text' : 'password'}
+								value={password}
+								onChange={e => setPassword(e.target.value)}
+							/>
+							<button
+								className="toggle-password-btn"
+								onClick={() => setShowPassword(!showPassword)}>
+								<FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+							</button>
+						</div>
+						<div className="password-input-container">
+							<input
+								placeholder="비밀번호 다시 한번 입력해주세요"
+								className="sign-up-input-password"
+								type={showConfirmPassword ? 'text' : 'password'}
+								value={confirmPassword}
+								onChange={e => setConfirmPassword(e.target.value)}
+							/>
+							<button
+								className="toggle-password-btn"
+								onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+								<FontAwesomeIcon
+									icon={showConfirmPassword ? faEyeSlash : faEye}
+								/>
+							</button>
+						</div>
 					</div>
-					<div className="footer">
+					<div className="sign-up-footer">
 						<span
 							className="footer-sign-in"
 							onClick={handleLoginClick}
@@ -102,5 +136,3 @@ export function SignUp() {
 		</>
 	);
 }
-
-export default SignUp;

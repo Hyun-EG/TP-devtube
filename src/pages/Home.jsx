@@ -11,10 +11,10 @@ import { fetchEvents } from '../redux/eventsSlice';
 
 const getWeekDates = (date, weekOffset = 0) => {
 	const currentDate = new Date(date);
-	currentDate.setDate(currentDate.getDate() + weekOffset * 7);
-	const day = currentDate.getDay();
-	const diff = currentDate.getDate() - day + (day === 0 ? -6 : 1);
-	const startOfWeek = new Date(currentDate.setDate(diff));
+	const dayOfWeek = currentDate.getDay();
+	const startOfWeek = new Date(currentDate);
+	startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek + weekOffset * 7);
+
 	const dates = Array.from({ length: 7 }).map((_, i) => {
 		const d = new Date(startOfWeek);
 		d.setDate(d.getDate() + i);
@@ -95,8 +95,6 @@ export const Home = () => {
 	};
 
 	const opts = {
-		height: '240',
-		width: '496',
 		playerVars: {
 			autoplay: 0
 		}
@@ -127,7 +125,7 @@ export const Home = () => {
 				</div>
 				<div className="board-wrapper">
 					<div className="first-line">
-						<div className="impormation-channel-area">
+						<div className="information-channel-area">
 							<div className="__content-title">
 								<span>채널 정보</span>
 								<button
@@ -169,6 +167,7 @@ export const Home = () => {
 								<YouTube
 									videoId="ymtDGOp13ns?si=2N7NC7bN1Moy8H0j"
 									opts={opts}
+									className="youtube-video"
 								/>
 							</div>
 						</div>
@@ -186,8 +185,8 @@ export const Home = () => {
 							</div>
 						</div>
 						<div className="schedule">
-							<table>
-								<thead>
+							<table className="__table">
+								<thead className="__thead">
 									<tr>
 										{weekDates.map((date, index) => (
 											<th key={index} className={isToday(date) ? 'today' : ''}>
@@ -215,11 +214,7 @@ export const Home = () => {
 														return startDate <= date && date <= endDate;
 													})
 													.map(event => (
-														<div key={event.id}>
-															{event.title.length > 5
-																? `${event.title.slice(0, 7)}...`
-																: event.title}
-														</div>
+														<div key={event.id}>{`● ${event.title}`}</div>
 													))}
 											</td>
 										))}

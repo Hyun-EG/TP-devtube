@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
-import logo from '../assets/header_logo.png';
+import logo from '../assets/header_logo.svg';
 import { useNavigate } from 'react-router-dom';
 
 export function FindId() {
@@ -36,31 +36,39 @@ export function FindId() {
 		navigate('/');
 	};
 
+	const handleKeyDown = event => {
+		if (event.key === 'Enter') {
+			handleFindId();
+		}
+	};
+
 	return (
 		<>
 			<div className="find-id">
 				<div className="wrapper">
 					<div className="header">
-						<img src={logo} alt="header-logo" />
+						<img className="find-id-logo-img" src={logo} alt="header-logo" />
 					</div>
 					<div className="find-id-content">
 						<span className="title">Find id</span>
-						<span>아이디찾기</span>
+						<span className="title">아이디찾기</span>
 					</div>
-					<div className="input-area">
+					<div className="find-id-input-area">
 						<input
-							className="input-box"
+							className="find-id-input-box"
 							type="text"
 							placeholder="이름을 입력해주세요"
 							value={name}
 							onChange={e => setName(e.target.value)}
+							onKeyDown={handleKeyDown}
 						/>
 						<input
-							className="input-box"
+							className="find-id-input-box"
 							type="text"
 							placeholder="채널이름을 입력해주세요"
 							value={channelName}
 							onChange={e => setChannelName(e.target.value)}
+							onKeyDown={handleKeyDown}
 						/>
 					</div>
 

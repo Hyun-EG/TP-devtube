@@ -72,9 +72,9 @@ function Sidebar() {
 			</div>
 
 			<div className="logout">
-				<div className="logout_content">
+				<div onClick={handleLogoutClick} className="logout_content">
 					<img src={Logout} alt="Logout" />
-					<span onClick={handleLogoutClick}>Logout</span>
+					<span>Logout</span>
 				</div>
 			</div>
 		</div>

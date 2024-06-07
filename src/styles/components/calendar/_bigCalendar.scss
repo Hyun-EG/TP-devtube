@@ -42,10 +42,10 @@ button.rbc-input {
 .rbc-calendar {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	width: calc(100% - 15.625rem);
+	width: calc(100% - 250px);
 	height: 100vh;
-	margin-left: 15.625rem;
-	padding: 2.5rem;
+	margin-left: 250px;
+	padding: 3.91vh;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -311,8 +311,8 @@ button.rbc-input {
 		flex-grow: 1;
 		padding: 0 10px;
 		text-align: center;
-		font-size: 1.3rem;
-		font-weight: bold;
+		font-size: 2.34vh;
+		font-weight: 600;
 	}
 	button {
 		color: $grey-800;

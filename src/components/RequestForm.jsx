@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useFirestore } from "../hooks/useFirestore";
+import { useEffect, useState } from 'react';
+import { useFirestore } from '../hooks/useFirestore';
 
 export default function RequestForm() {
 
@@ -10,110 +10,92 @@ export default function RequestForm() {
   const [content, setContent] = useState(""); // 신청 내용
   const { addDocument, response } = useFirestore('request');
 
-  const handleData = (event) => {
-    if (event.target.id === 'date'){
-      setRequestDate(event.target.value);
-    } else if (event.target.id === 'reason') {
-      setReason(event.target.value);
-    } else if (event.target.id === 'videoId') {
-      setVideoId(event.target.value);
-    } else if (event.target.id === 'month') {
-      setAccountMonth(event.target.value);
-    } else if (event.target.id === 'cont') {
-      setContent(event.target.value);
-    }
-  }
-
   useEffect(() => {
     if (response.success) {
       setRequestDate('');
       setReason('');
       setVideoId('');
       setAccountMonth('');
+      setContent('');
     }
-  }, [response.success])
+  }, [response.success]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(requestDate, reason, videoId, accountMonth, content);
-    addDocument({ requestDate, reason, videoId, accountMonth, content }); // 이 브랜치에 로그인 기능 없어서 uid 제외함
+    addDocument({ requestDate, reason, videoId, accountMonth, content });
+  }
+
+  const handleInputChange = (setter) => (event) => {
+    setter(event.target.value);
   }
 
   return (
     <>
-      <div className="requests">
-        <div className="header">
-          <h1 className="board_title">수익 정정 신청</h1>
+      <form onSubmit={handleSubmit} className="requests_wrapper">
+        <div className="contents">
+          <div className="item">
+            <span className="input_title">신청 날짜 *</span>
+            <input className="input_box"
+              type="date" 
+              id="date" 
+              value={requestDate} 
+              onChange={handleInputChange(setRequestDate)}
+              data-placeholder="날짜를 선택해주세요" 
+              required 
+            />
+          </div>
+          <div className="item">
+            <span className="input_title">사유 *</span>
+            <input className="input_box"
+              type="text" 
+              id="reason" 
+              value={reason} 
+              onChange={handleInputChange(setReason)}
+              placeholder="사유를 선택해주세요" 
+              required 
+            />
+          </div>
         </div>
-        <form onSubmit={handleSubmit} className="requests_wrapper">
-        
-          <div className="contents">
-            <div className="item">
-              <span className="input_title">신청 날짜 *</span>
-              <input className="input_box"
-                type="date" 
-                id="date" 
-                value={requestDate} onChange={handleData}
-                data-placeholder="날짜를 선택해주세요" 
-                required 
-              />
-            </div>
-
-            <div className="item">
-              <span className="input_title">사유 *</span>
-              <input className="input_box"
-                type="text" 
-                id="reason" 
-                value={reason} onChange={handleData}
-                placeholder="사유를 선택해주세요" 
-                required 
-              />
-            </div>
+        <div className="contents">
+          <div className="item">
+            <span className="input_title">관련 영상 ID</span>
+            <input className="input_box"
+              type="text" 
+              id="videoId" 
+              value={videoId} 
+              onChange={handleInputChange(setVideoId)}
+              placeholder="영상 ID를 입력해주세요" 
+            />
           </div>
-
-          
-          <div className="contents">
-            <div className="item">
-              <span className="input_title">관련 영상 ID</span>
-              <input className="input_box"
-                type="text" 
-                id="videoId" 
-                value={videoId} onChange={handleData} 
-                placeholder="영상 ID를 입력해주세요" 
-              />
-            </div>
-
-            <div className="item">
-              <span className="input_title">정산 기간 (월)</span>
-              <input className="input_box"
-                type="month" 
-                id="month" 
-                value={accountMonth} onChange={handleData} 
-                placeholder="정산 기간을 선택해주세요" 
-              />
-            </div>
+          <div className="item">
+            <span className="input_title">정산 기간 (월)</span>
+            <input className="input_box"
+              type="month" 
+              id="month" 
+              value={accountMonth} 
+              onChange={handleInputChange(setAccountMonth)}
+              placeholder="정산 기간을 선택해주세요" 
+            />
           </div>
-
-          <div className="contents">
-            <div className="item--detail">
-              <span className="input_title">신청 내용</span>
-              <input className="input_box"
-                type="text" 
-                id="cont" 
-                value={content} onChange={handleData} 
-                maxLength="300" 
-                placeholder="설명을 입력해주세요 (최대 300자)" 
-                
-              />
-              </div>
+        </div>
+        <div className="contents">
+          <div className="item__detail">
+            <span className="input_title">신청 내용</span>
+            <input className="input_box"
+              type="text" 
+              id="cont" 
+              value={content} 
+              onChange={handleInputChange(setContent)}
+              maxLength="300" 
+              placeholder="설명을 입력해주세요 (최대 300자)" 
+            />
           </div>
-
-          <div className="contents">
-            <button className="btn_submit" type="submit">신청하기</button>
-          </div>
-          
-        </form>
-      </div>
+        </div>
+        <div className="contents">
+          <button className="btn_submit" type="submit">신청하기</button>
+        </div>
+      </form>
     </>
   )
 }

@@ -116,7 +116,7 @@ const BigCalendar = () => {
 
 			// 세 번째 조건: 종료 시간과 시작 시간의 차이가 24시간보다 큰 경우
 			if (dayjs(end).diff(dayjs(start), 'hours') > 24) {
-				classNames.push(`colorbar-${event.colorbar ? event.colorbar.replace('#', '') : ''}`);
+				classNames.push(`colorbar${event.colorbar ? event.colorbar.replace('#', '-') : ''}`);
 			}
 
 			return { className: classNames.join(' ') };

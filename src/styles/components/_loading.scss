@@ -4,7 +4,7 @@
 	&__loader {
 		position: absolute;
 		left: 50%;
-		transform: translateX(-50%);
+		margin-top: 10vh;
 
 		width: 50px;
 		--b: 8px;
@@ -28,8 +28,8 @@
 	}
 }
 
-// @keyframes l4 {
-// 	to {
-// 		transform: rotate(1turn);
-// 	}
-// }
+@keyframes l4 {
+	to {
+		transform: rotate(1turn);
+	}
+}

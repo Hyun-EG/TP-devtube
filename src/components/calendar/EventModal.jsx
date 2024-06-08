@@ -67,6 +67,8 @@ const EventModal = ({
 
 	if (!isOpen) return null;
 
+	const showDeleteButton = !!event && event.id; // 새 일정 모달창에서 삭제 버튼이 보이지 않게 함.
+
 	return (
 		<div className="modal-overlay" onClick={onRequestClose}>
 			<div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -116,7 +118,7 @@ const EventModal = ({
 						onSave={handleSubmit}
 						onCancel={onRequestClose}
 						onDelete={handleDelete}
-						showDelete={!!event}
+						showDelete={showDeleteButton}
 					/>
 				</form>
 			</div>

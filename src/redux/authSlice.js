@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+	user: JSON.parse(localStorage.getItem('user')) || null,
+	loading: false,
+	error: null,
+	signUpError: null,
+	signUpSuccess: false
+};
+
 const authSlice = createSlice({
 	name: 'auth',
-	initialState: {
-		user: null,
-		loading: false,
-		error: null,
-		signUpError: null,
-		signUpSuccess: false
-	},
+	initialState,
 	reducers: {
 		setUser(state, action) {
 			state.user = action.payload;

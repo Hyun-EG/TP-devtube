@@ -23,8 +23,8 @@ function RequestModal({ onClose, onFormSubmit, initialData }) {
       console.error("No email found in localStorage");
       return;
     }
-    console.log("Updating document with id:", initialData.id); // 로그확인용
-    updateDocument(initialData.id, { requestDate, reason, videoId, accountMonth, content, email });
+    console.log("Updating document with id:", initialData.docId); // 로그확인용
+    updateDocument(initialData.docId, { requestDate, reason, videoId, accountMonth, content, email });
   };
 
   const handleInputChange = (setter) => (event) => {

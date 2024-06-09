@@ -19,6 +19,10 @@ PW : test@1234
 ```
 <br>
 
+```
+🎯 작업 Organization Repo : https://github.com/toy2-1/devtube
+```
+
 ## 팀원 소개 및 분담
 
 |<p align='center'>김여진B</p>|<p align='center'>박성현</p>|<p align='center'>이진영</p>|<p align='center'>임혜정</p>|<p align='center'>호프니콜라</p>|

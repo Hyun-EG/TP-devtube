@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFirestore } from '../hooks/useFirestore';
 
-export default function RequestForm() {
-
-  const [requestDate, setRequestDate] = useState(""); // 신청 날짜
-  const [reason, setReason] = useState(""); // 신청 사유
-  const [videoId, setVideoId] = useState(""); // 영상 ID
-  const [accountMonth, setAccountMonth] = useState(""); // 정산 기간??
-  const [content, setContent] = useState(""); // 신청 내용
+export default function RequestForm({ onFormSubmit, initialData = {} }) {
+  const [requestDate, setRequestDate] = useState(initialData.requestDate || "");
+  const [reason, setReason] = useState(initialData.reason || "");
+  const [videoId, setVideoId] = useState(initialData.videoId || "");
+  const [accountMonth, setAccountMonth] = useState(initialData.accountMonth || "");
+  const [content, setContent] = useState(initialData.content || "");
   const { addDocument, response } = useFirestore('request');
 
   useEffect(() => {
@@ -17,13 +16,20 @@ export default function RequestForm() {
       setVideoId('');
       setAccountMonth('');
       setContent('');
+      onFormSubmit(); // 폼 제출 후 부모 컴포넌트에 알림 추가
     }
   }, [response.success]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(requestDate, reason, videoId, accountMonth, content);
-    addDocument({ requestDate, reason, videoId, accountMonth, content });
+    const email = localStorage.getItem('email'); // 로컬 스토리지에서 이메일 가져오기
+    if (!email) {
+      console.error("No email found in localStorage");
+      return; // 이메일이 없는 경우 함수 종료
+    }
+    console.log("Email from localStorage:", email); // 디버깅을 위해 이메일 출력
+    console.log(requestDate, reason, videoId, accountMonth, content, email);
+    addDocument({ requestDate, reason, videoId, accountMonth, content, email });
   }
 
   const handleInputChange = (setter) => (event) => {
@@ -52,7 +58,7 @@ export default function RequestForm() {
               id="reason" 
               value={reason} 
               onChange={handleInputChange(setReason)}
-              placeholder="사유를 선택해주세요" 
+              placeholder="사유를 입력해 주세요" 
               required 
             />
           </div>
@@ -65,7 +71,7 @@ export default function RequestForm() {
               id="videoId" 
               value={videoId} 
               onChange={handleInputChange(setVideoId)}
-              placeholder="영상 ID를 입력해주세요" 
+              placeholder="영상 ID를 입력해 주세요" 
             />
           </div>
           <div className="item">
@@ -75,7 +81,7 @@ export default function RequestForm() {
               id="month" 
               value={accountMonth} 
               onChange={handleInputChange(setAccountMonth)}
-              placeholder="정산 기간을 선택해주세요" 
+              placeholder="정산 기간을 선택해 주세요" 
             />
           </div>
         </div>
@@ -88,7 +94,7 @@ export default function RequestForm() {
               value={content} 
               onChange={handleInputChange(setContent)}
               maxLength="300" 
-              placeholder="설명을 입력해주세요 (최대 300자)" 
+              placeholder="설명을 입력해 주세요 (최대 300자)" 
             />
           </div>
         </div>

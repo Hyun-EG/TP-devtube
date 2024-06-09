@@ -91,7 +91,7 @@ function RequestList({ reload, onEditClick }) {
 								</div>
 							))
 						) : (
-							<div className="contents">
+							<div className="contents_empty">
 								<div className="item">
 									<img src={noData} alt="no data" />
 								</div>

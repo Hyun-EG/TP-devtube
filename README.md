@@ -25,7 +25,7 @@ PW : test@1234
 |--------|--------|--------|--------|--------|
 | <p align="center"><img src="https://i.pinimg.com/236x/69/0d/28/690d288b651b78ecf09e776c05d977e3.jpg" width="100px" height="100px"/></p> | <p align="center"><img src="https://i.pinimg.com/236x/69/0d/28/690d288b651b78ecf09e776c05d977e3.jpg" width="100px" height="100px"/></p> | <p align="center"><img src="https://i.pinimg.com/236x/69/0d/28/690d288b651b78ecf09e776c05d977e3.jpg" width="100px" height="100px"/></p> | <p align="center"><img src="https://i.pinimg.com/236x/69/0d/28/690d288b651b78ecf09e776c05d977e3.jpg" width="100px" height="100px"/></p> | <p align="center"><img src="https://i.pinimg.com/236x/69/0d/28/690d288b651b78ecf09e776c05d977e3.jpg" width="100px" height="100px"/></p> |
 | [`https://github.com/oxlzlo`](https://github.com/oxlzlo)| [`https://github.com/Hyun-EG`](https://github.com/Hyun-EG) | [`https://github.com/holololob`](https://github.com/holololob) | [`https://github.com/spoonbill40082`](https://github.com/spoonbill40082) | [`https://github.com/nicola-laura`](https://github.com/nicola-laura)|
-| 초기 개발 환경 세팅, 수익 내역 확인 페이지 구현, 로딩 애니메이션 구현, 로그인 여부에 따른 페이지 접근 권한 설정 | 메인 · 로그인 · 회원가입 · 아이디 찾기 · 비밀번호 재설정 · 404 PAGE 페이지 구현 | 수익 정정 신청 및 신청 내역 확인 페이지 구현, 정정 신청 관련 CRUD(with 김여진) | 일정 관리용 달력 페이지 구성(with 호프 니콜라) React BigCalendar, React DatePicker를 이용한 스케줄 관리 기능, 일정 CRUD 모달창, React의 useContext를 이용한 계정별 일정 정보 입출력 관리, SCSS를 이용한 달력 디자인 수정. | 웹사이트 디자인 및 유저 플로우 제작, 캘린더 페이지 상태 관리 (context), 캘린더 페이지 scss, 사이드바 상태 및 스타일링 |
+| 초기 개발 환경 세팅, 헤더 · 사이드바 디자인 구현, 수익 내역 확인 페이지 구현, 로딩 애니메이션 구현, 로그인 여부에 따른 페이지 접근 권한 설정, 체크박스 전체 선택/해제, 최종 배포 | 메인 · 로그인 · 회원가입 · 아이디 찾기 · 비밀번호 재설정 · 404 PAGE 페이지 구현 | 수익 정정 신청 및 신청 내역 확인 페이지 구현, 정정 신청 관련 CRUD(with 김여진) | 일정 관리용 달력 페이지 구성(with 호프 니콜라) React BigCalendar, React DatePicker를 이용한 스케줄 관리 기능, 일정 CRUD 모달창, React의 useContext를 이용한 계정별 일정 정보 입출력 관리, SCSS를 이용한 달력 디자인 수정. | 웹사이트 디자인 및 유저 플로우 제작, 캘린더 페이지 상태 관리 (context), 캘린더 페이지 scss, 사이드바 상태 및 스타일링 |
 
 
 <br>
@@ -66,6 +66,7 @@ PW : test@1234
 
 - `이름` `채널이름` `이메일`을 입력하면 해당 데이터와 일치하는 계정의 `비밀번호를 재설정`할 수 있습니다.
 
+<br>
  
 ---
 
@@ -76,13 +77,20 @@ PW : test@1234
 - `채널정보 수정`을 통해 계정의 `이름` `채널 이름` `비밀번호` 수정이 가능합니다.
 -  하단의 `주간 캘린더`를 통해 간편하게 이번 주 스케줄을 확인 할 수 있습니다.
 
+<br>
+
 ---
 
 ### 정정 신청 · 정정 내역 페이지
+![정정신청](https://github.com/toy2-1/devtube/assets/140046183/9b3f5797-3832-48e8-a2de-d40d05b6b699)
+![정정신청 모달](https://github.com/toy2-1/devtube/assets/140046183/03b6c101-078c-4ec8-9e9f-6f37833d871c)
+
 
 - 수익 정정 신청 폼 제출이 가능합니다.
 - 폼 제출 시 로그인 계정 정보를 포함하며, 하단의 `신청 내역`에서 로그인한 유저가 제출한 신청 내역을 확인할 수 있습니다.
 - 폼 제출 즉시 신청 내역이 표시됩니다.
+
+<br>
 
 ---
 
@@ -92,18 +100,24 @@ PW : test@1234
 ![일정추가](https://github.com/oxlzlo/oxlzlo/assets/140046183/103ff4de-14a8-4180-ac4a-42866cf9a3c3)
 - Firestore 데이터베이스에서 사용자 정보를 추출해 로그인한 사용자의 이벤트를 가져오기, 추가, 업데이트, 삭제할 수 있게 구현했습니다(useContext 사용).
 - 이벤트 처리 모달창을 넣어 일정 작성을 할 수 있게 만들었습니다(사용자 상호작용 처리: 빈 슬롯 클릭 시 새 이벤트 추가, 기존 이벤트 클릭 시 수정 가능).
-- BigCalendar의 drag&drop addon 기능을 활용해 이벤트 드래그 앤 드롭 및 크기 조정 기능 지원합니다.
 - 색상을 선택해 일정 구분을 더욱 명확히 할 수 있게 했습니다.
+
+![캘린더 1](https://github.com/toy2-1/devtube/assets/140046183/a82b683e-e3e2-4d03-8fb0-4346607b2c33)
+- BigCalendar의 drag&drop addon 기능을 활용해 이벤트 드래그 앤 드롭 및 크기 조정 기능 지원합니다.
+
+
+<br>
 
 ---
 
 ### 급여내역 페이지
 ![급여내역](https://github.com/oxlzlo/oxlzlo/assets/140046183/ce7a7272-95b9-413b-9ef4-c151621004f3)
+![명세서](https://github.com/toy2-1/devtube/assets/140046183/b25de073-2ba8-43ce-86e9-02f96e9ad466)
 
-- 조회수와 급여 내역을 그래프로 확인
-- 총 수익내역 확인 페이지네이션
-- 명세서가 클릭한 해당 수익 내역과 연결
-- 종류별 내역이 총 수익 내역의 합산 값으로 자동 계산
+- 조회수와 급여 내역을 그래프로 확인할 수 있습니다.
+- 총 수익을 확인하는 곳에 페이지네이션을 넣어, 항목이 5개가 넘어갈 경우 항목이 자동으로 다음 페이지로 넘어갑니다.
+- 명세서가 클릭한 해당 수익 내역과 연결되어 해당 명세만 확인할 수 있습니다.
+- 종류별 내역이 총 수익 내역의 합산 값으로 자동 계산됩니다.
 
 <br>
 

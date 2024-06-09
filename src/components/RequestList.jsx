@@ -80,7 +80,16 @@ function RequestList({ reload, onEditClick }) {
 					</button>
 					<div className="requests_list">
 						<div className="contents_top">
-							<input type="checkbox"></input>
+							<input
+								type="checkbox"
+								onChange={() => {
+									if (selectedIds.length === events.length) {
+										setSelectedIds([]);
+									} else {
+										setSelectedIds(events.map(event => event.docId));
+									}
+								}}
+								checked={selectedIds.length === events.length}></input>
 							<div>신청 날짜</div>
 							<div>사유</div>
 							<div>영상 ID</div>
@@ -93,10 +102,8 @@ function RequestList({ reload, onEditClick }) {
 								<div key={event.id} className="contents">
 									<input
 										type="checkbox"
-										onChange={() =>
-											setSelectedIds(events.map(event => event.docId))
-										}
-										checked={selectedIds.length === events.length}></input>
+										checked={selectedIds.includes(event.docId)}
+										onChange={() => handleCheckboxChange(event.docId)}></input>
 									<div className="item">
 										<span className="text">{event.date}</span>
 									</div>

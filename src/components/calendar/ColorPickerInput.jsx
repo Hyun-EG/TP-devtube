@@ -4,12 +4,13 @@ const colors = [
   '',
   '#ffadad',
   '#ffbf70',
-  '#2ec4b6',
+  '#ffe359',
+  '#b5e48c',
+  '#42cdbf',
   '#a0c4ff',
   '#bdb2ff',
   '#ffc6ff',
-  '#b5e48c',
-  '#ffe359',
+  '#bdcddc',
 ];
 
 const ColorPicekrInput = ({ value, onChange }) => {

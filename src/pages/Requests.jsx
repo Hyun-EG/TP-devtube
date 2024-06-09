@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/SideBar';
 import RequestForm from '../components/RequestForm';
@@ -23,6 +23,17 @@ function Requests() {
     setIsModalOpen(false);
     setSelectedEvent(null);
 	};
+
+  useEffect(() => {
+		const modalEl = document.querySelector('.request_modal');
+		if (modalEl) {
+			if (isModalOpen) {
+				document.querySelector('.request_modal').classList.add('modal-open');
+			} else {
+				document.querySelector('.request_modal').classList.remove('modal-open');
+			}
+		}
+	}, [isModalOpen]);
 
 	return (
     <>

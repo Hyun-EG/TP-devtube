@@ -90,7 +90,10 @@ PW : test@1234
 ### 캘린더 페이지
 ![캘린더](https://github.com/oxlzlo/oxlzlo/assets/140046183/9cc0b87c-7d37-4f4c-a6fa-163ff094881f)
 ![일정추가](https://github.com/oxlzlo/oxlzlo/assets/140046183/103ff4de-14a8-4180-ac4a-42866cf9a3c3)
-
+- Firestore 데이터베이스에서 사용자 정보를 추출해 로그인한 사용자의 이벤트를 가져오기, 추가, 업데이트, 삭제할 수 있게 구현했습니다(useContext 사용).
+- 이벤트 처리 모달창을 넣어 일정 작성을 할 수 있게 만들었습니다(사용자 상호작용 처리: 빈 슬롯 클릭 시 새 이벤트 추가, 기존 이벤트 클릭 시 수정 가능).
+- BigCalendar의 drag&drop addon 기능을 활용해 이벤트 드래그 앤 드롭 및 크기 조정 기능 지원합니다.
+- 색상을 선택해 일정 구분을 더욱 명확히 할 수 있게 했습니다.
 
 ---
 

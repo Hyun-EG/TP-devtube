@@ -29,7 +29,7 @@ function RequestList({ reload, onEditClick }) {
 				reason: data.reason,
 				id: data.videoId,
 				period: data.accountMonth,
-				content: data.content,
+				content: data.content
 			};
 		});
 		setEvents(fetchedEvents);

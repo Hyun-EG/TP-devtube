@@ -19,6 +19,7 @@ export function Login() {
 
 	useEffect(() => {
 		if (user) {
+			localStorage.setItem('email', email);
 			navigate('/home');
 		}
 	}, [user, navigate]);

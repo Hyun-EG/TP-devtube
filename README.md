@@ -1,10 +1,5 @@
 #  유튜브 크리에이터 스튜디오 플랫폼
 <br>
-<div align=center>
-  <a href="https://devtube-46156.web.app/" target="_blank">
-    <img src="https://img.shields.io/badge/Devtube-ed234b?style=for-the-badge&logoColor=white" alt="example"/>
-  </a>
-</div>
 <br>
 <br>
 
@@ -23,13 +18,12 @@ PW : test@1234
 🎯 작업 Organization Repo : https://github.com/toy2-1/devtube
 ```
 
-## 팀원 소개 및 분담
+## 팀원 소개
 
 |<p align='center'>김여진B</p>|<p align='center'>박성현</p>|<p align='center'>이진영</p>|<p align='center'>임혜정</p>|<p align='center'>호프니콜라</p>|
 |--------|--------|--------|--------|--------|
 | <p align="center">![140046183](https://github.com/toy2-1/devtube/assets/140046183/9e2ccf74-860c-49d2-8096-ebb00461d209)</p> | <p align="center">![106307387](https://github.com/toy2-1/devtube/assets/140046183/326a6437-f6a2-4b9c-89a7-4b12e7ed2d2d)</p> | <p align="center">![159132386](https://github.com/toy2-1/devtube/assets/140046183/51158c89-ec81-4f6b-99af-457d22053d44)</p> | <p align="center">![159132230](https://github.com/toy2-1/devtube/assets/140046183/5b43cc94-08f1-4e5d-9f06-4285c24cebfd)</p> | <p align="center">![159132327](https://github.com/toy2-1/devtube/assets/140046183/7bbff5d6-9fee-4056-9a3b-753b0e53912c)</p> |
 | [`https://github.com/oxlzlo`](https://github.com/oxlzlo)| [`https://github.com/Hyun-EG`](https://github.com/Hyun-EG) | [`https://github.com/holololob`](https://github.com/holololob) | [`https://github.com/spoonbill40082`](https://github.com/spoonbill40082) | [`https://github.com/nicola-laura`](https://github.com/nicola-laura)|
-| 초기 개발 환경 세팅, 헤더 · 사이드바 디자인 구현, 수익 내역 확인 페이지 구현, 로딩 애니메이션 구현, 로그인 여부에 따른 페이지 접근 권한 설정, 체크박스 전체 선택/해제, 최종 배포 | 메인 · 로그인 · 회원가입 · 아이디 찾기 · 비밀번호 재설정 · 404 PAGE 페이지 구현 | 수익 정정 신청 및 신청 내역 확인 페이지 구현, 정정 신청 관련 CRUD(with 김여진) | 일정 관리용 달력 페이지 구성(with 호프 니콜라) React BigCalendar, React DatePicker를 이용한 스케줄 관리 기능, 일정 CRUD 모달창, React의 useContext를 이용한 계정별 일정 정보 입출력 관리, SCSS를 이용한 달력 디자인 수정. | 웹사이트 디자인 및 유저 플로우 제작, 캘린더 페이지 상태 관리 (context), 캘린더 페이지 scss, 사이드바 상태 및 스타일링 |
 
 
 <br>
